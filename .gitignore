@@ -1,0 +1,12 @@
+# Ignorar la carpeta de DebugBar
+writable/debugbar/
+
+# Ignorar archivos de log
+writable/logs/
+
+# Ignorar archivos de cache
+writable/cache/
+
+# Ignorar otros archivos que no deseas rastrear
+writable/session/
+writable/uploads/
