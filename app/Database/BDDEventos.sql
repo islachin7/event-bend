@@ -55,7 +55,7 @@ CREATE TABLE usuario (
                       tu.nombre as tipousuario,
                       u.ind_activo 
                 FROM 	usuario u 
-          INNER JOIN 	tipoUsuario tu on tu.id = u.tipousuario
+          INNER JOIN 	tipousuario tu on tu.id = u.tipousuario
               WHERE 	u.ind_activo = 1;
  
 
