@@ -1,0 +1,105 @@
+ERROR - 2024-10-15 02:12:51 --> mysqli_sql_exception: Unknown column 'usuario.deleted_at' in 'where clause' in C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *\nFROM `...', 0)
+#1 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *\nFROM `...')
+#2 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *\nFROM `...')
+#3 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *\nFROM `...', Array, false)
+#4 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+#5 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+#6 C:\xampp\htdocs\EventosSI\app\Controllers\Auth.php(19): CodeIgniter\BaseModel->findAll()
+#7 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Auth->index()
+#8 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#9 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#10 C:\xampp\htdocs\EventosSI\index.php(67): CodeIgniter\CodeIgniter->run()
+#11 {main}
+CRITICAL - 2024-10-15 02:12:51 --> Unknown column 'usuario.deleted_at' in 'where clause'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('SELECT *
+FROM `usuario`
+WHERE `usuario`.`deleted_at` IS NULL', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('SELECT *
+FROM `usuario`
+WHERE `usuario`.`deleted_at` IS NULL')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('SELECT *
+FROM `usuario`
+WHERE `usuario`.`deleted_at` IS NULL')
+ 4 SYSTEMPATH\Database\BaseBuilder.php(1616): CodeIgniter\Database\BaseConnection->query('SELECT *
+FROM `usuario`
+WHERE `usuario`.`deleted_at` IS NULL', [], false)
+ 5 SYSTEMPATH\Model.php(241): CodeIgniter\Database\BaseBuilder->get()
+ 6 SYSTEMPATH\BaseModel.php(618): CodeIgniter\Model->doFindAll(0, 0)
+ 7 APPPATH\Controllers\Auth.php(19): CodeIgniter\BaseModel->findAll()
+ 8 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->index()
+ 9 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+10 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+11 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-10-15 02:27:24 --> Undefined variable: correo
+in APPPATH\Controllers\Auth.php on line 19.
+ 1 APPPATH\Controllers\Auth.php(19): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Undefined variable: correo', 'C:\\xampp\\htdocs\\EventosSI\\app\\Controllers\\Auth.php', 19, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->index()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-10-15 02:27:55 --> mysqli_sql_exception: Unknown column 'u.celular' in 'field list' in C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('call listar_usu...', 0)
+#1 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('call listar_usu...')
+#2 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('call listar_usu...')
+#3 C:\xampp\htdocs\EventosSI\app\Controllers\Auth.php(19): CodeIgniter\Database\BaseConnection->query('call listar_usu...')
+#4 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Auth->index()
+#5 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#6 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\EventosSI\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2024-10-15 02:27:55 --> Unknown column 'u.celular' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('call listar_usuariosActivos()', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('call listar_usuariosActivos()')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('call listar_usuariosActivos()')
+ 4 APPPATH\Controllers\Auth.php(19): CodeIgniter\Database\BaseConnection->query('call listar_usuariosActivos()')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->index()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ERROR - 2024-10-15 02:34:10 --> mysqli_sql_exception: Unknown column 'u.contrasena' in 'field list' in C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php:295
+Stack trace:
+#0 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\MySQLi\Connection.php(295): mysqli->query('call listar_usu...', 0)
+#1 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('call listar_usu...')
+#2 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('call listar_usu...')
+#3 C:\xampp\htdocs\EventosSI\app\Controllers\Auth.php(30): CodeIgniter\Database\BaseConnection->query('call listar_usu...')
+#4 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(932): App\Controllers\Auth->login()
+#5 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+#6 C:\xampp\htdocs\EventosSI\vendor\codeigniter4\framework\system\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(NULL, Object(Config\Cache), false)
+#7 C:\xampp\htdocs\EventosSI\index.php(67): CodeIgniter\CodeIgniter->run()
+#8 {main}
+CRITICAL - 2024-10-15 02:34:10 --> Unknown column 'u.contrasena' in 'field list'
+in SYSTEMPATH\Database\MySQLi\Connection.php on line 295.
+ 1 SYSTEMPATH\Database\MySQLi\Connection.php(295): mysqli->query('call listar_usuarioCorreo("")', 0)
+ 2 SYSTEMPATH\Database\BaseConnection.php(692): CodeIgniter\Database\MySQLi\Connection->execute('call listar_usuarioCorreo("")')
+ 3 SYSTEMPATH\Database\BaseConnection.php(606): CodeIgniter\Database\BaseConnection->simpleQuery('call listar_usuarioCorreo("")')
+ 4 APPPATH\Controllers\Auth.php(30): CodeIgniter\Database\BaseConnection->query('call listar_usuarioCorreo("")')
+ 5 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->login()
+ 6 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 7 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 8 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-10-15 02:41:04 --> Trying to get property 'password' of non-object
+in APPPATH\Controllers\Auth.php on line 35.
+ 1 APPPATH\Controllers\Auth.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'password\' of non-object', 'C:\\xampp\\htdocs\\EventosSI\\app\\Controllers\\Auth.php', 35, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->login()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-10-15 02:42:21 --> Trying to get property 'password' of non-object
+in APPPATH\Controllers\Auth.php on line 35.
+ 1 APPPATH\Controllers\Auth.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'password\' of non-object', 'C:\\xampp\\htdocs\\EventosSI\\app\\Controllers\\Auth.php', 35, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->login()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+CRITICAL - 2024-10-15 02:43:34 --> Trying to get property 'password' of non-object
+in APPPATH\Controllers\Auth.php on line 35.
+ 1 APPPATH\Controllers\Auth.php(35): CodeIgniter\Debug\Exceptions->errorHandler(8, 'Trying to get property \'password\' of non-object', 'C:\\xampp\\htdocs\\EventosSI\\app\\Controllers\\Auth.php', 35, [...])
+ 2 SYSTEMPATH\CodeIgniter.php(932): App\Controllers\Auth->login()
+ 3 SYSTEMPATH\CodeIgniter.php(497): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Auth))
+ 4 SYSTEMPATH\CodeIgniter.php(366): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 5 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
