@@ -35,9 +35,9 @@ $routes->set404Override();
  * RUTAS DE INDEX
  * --------------------------------------------------------------------
  */
-$routes->get('/', 'Auth::index');
-$routes->get('auth', 'Auth::index');
-$routes->post('auth/login', 'Auth::login');
+$routes->get('/', 'Auth::index', ['filter' => 'cors']);
+$routes->get('auth', 'Auth::index', ['filter' => 'cors']);
+$routes->post('auth/login', 'Auth::login', ['filter' => 'cors']);
 
 //$routes->resource('auth');
 
