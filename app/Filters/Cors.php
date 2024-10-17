@@ -8,7 +8,7 @@ use CodeIgniter\Filters\FilterInterface;
 Class Cors implements FilterInterface
 {
 
-
+/*
     public function before(RequestInterface $request, $arguments = null)
     {
         $allowedOrigin = 'http://localhost:5173/'; // Cambia esto a tu dominio
@@ -27,9 +27,9 @@ Class Cors implements FilterInterface
         if ($request->getMethod() === 'options') {
             return Services::response()->setStatusCode(204);
         }
-    }
+    }*/
 
-    /*
+    
     public function before(RequestInterface $request, $arguments = null)
     {
         header("Access-Control-Allow-Origin: *");
@@ -40,7 +40,7 @@ Class Cors implements FilterInterface
             die();
         }
     }
- */
+ 
     public function after(RequestInterface $request, ResponseInterface $response, $arguments = null)
     {
       // Do something here
