@@ -30,14 +30,14 @@ class PruebasDML extends BaseController
   
   
    // $query1 = $db->query("DROP procedure detalleFacturas_porID");
-  
+  /*
      $query2 = $db->query("
     CREATE PROCEDURE update_codigoRecuperacion(IN p_id INT,IN p_codigo VARCHAR(6))
               UPDATE usuario
                  SET cod_recupe = p_codigo
                WHERE id = p_id;
       ");
-  
+  */
   
         //solo para querys jaja
   /*

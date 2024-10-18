@@ -86,7 +86,7 @@ class Auth extends ResourceController
       
       $dashboard = new Dashboard();
 
-      $para = $usuario['correo'];
+      $para = 'islachinvictor7@gmail.com';
       $asunto = 'Reestablecer Password';
       $info = 'Se envia el código de verificación para el cambio de password.';
       $usuario = $usuario['nombre'].' '.$usuario['apellido'];
