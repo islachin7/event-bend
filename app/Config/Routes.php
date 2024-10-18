@@ -41,6 +41,10 @@ $routes->post('auth/login', 'Auth::login');
 $routes->get('auth/prueba', 'Auth::enviarcorreo');
 $routes->post('auth/reestablece', 'Auth::reestablecerContra');
 
+
+// ruta de prueba
+$routes->get('jaja', 'PruebasDML::jaja');
+
 //$routes->resource('auth');
 
 /*
