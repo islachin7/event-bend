@@ -41,14 +41,14 @@ class Auth extends ResourceController
 
       }else{
         $response = [
-          'error'     => 'Password Incorrecto'
+          'error'     => 'Password Incorrecto, vuelve a validar.'
         ];
         return $this->respond($response,400);
       }
 
     }else{
       $response = [
-        'error'     => 'No existe'
+        'error'     => 'El usuario ingresado no existe. Verifica tus datos e intenta nuevamente.'
       ];
       return $this->respond($response,400);
     }
