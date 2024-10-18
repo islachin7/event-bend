@@ -16,15 +16,15 @@ class Dashboard extends BaseController
       //Server settings
       $mail->SMTPDebug = SMTP::DEBUG_OFF;                     //Enable verbose debug output
       $mail->isSMTP();                                        //Send using SMTP
-      $mail->Host       = 'mail.ravennaproyectos.pe';         //Set the SMTP server to send through
+      $mail->Host       = 'in-v3.mailjet.com';                //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                               //Enable SMTP authentication
-      $mail->Username   = 'sistema@ravennaproyectos.pe';      //SMTP username
-      $mail->Password   = 'S1st3m@c01s@v';                    //SMTP password
+      $mail->Username   = '7819ffe2361d9a7500810155f70da2e2';      //SMTP username
+      $mail->Password   = 'ac7a83dbe225a3fadf86b98ecac640a8';                    //SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
       $mail->Port       = 465;                                //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
       
       //Recipients
-      $mail->setFrom('sistema@ravennaproyectos.pe', 'Información del Sistema');
+      $mail->setFrom('sistema@pruebas', 'Información del Sistema');
 
       $mail->addAddress($para);     //Add a recipient
       //$mail->addAddress('ellen@example.com');               //Name is optional
