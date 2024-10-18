@@ -10,3 +10,5 @@ writable/cache/
 # Ignorar otros archivos que no deseas rastrear
 writable/session/
 writable/uploads/
+
+git rm --cached .env

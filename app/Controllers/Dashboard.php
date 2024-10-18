@@ -16,15 +16,15 @@ class Dashboard extends BaseController
       //Server settings
       $mail->SMTPDebug = SMTP::DEBUG_OFF;                     //Enable verbose debug output
       $mail->isSMTP();                                        //Send using SMTP
-      $mail->Host       = 'in-v3.mailjet.com';                //Set the SMTP server to send through
+      $mail->Host       = $_ENV['Host'];                //Set the SMTP server to send through
       $mail->SMTPAuth   = true;                               //Enable SMTP authentication
-      $mail->Username   = '7819ffe2361d9a7500810155f70da2e2';      //SMTP username
-      $mail->Password   = 'ac7a83dbe225a3fadf86b98ecac640a8';                    //SMTP password
+      $mail->Username   = $_ENV['Username'];      //SMTP username
+      $mail->Password   = $_ENV['Password'];                    //SMTP password
       $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;        //Enable TLS encryption; `PHPMailer::ENCRYPTION_SMTPS` encouraged
       $mail->Port       = 465;                                //TCP port to connect to, use 465 for `PHPMailer::ENCRYPTION_SMTPS` above
       
       //Recipients
-      $mail->setFrom('sistema@pruebas', 'Información del Sistema');
+      $mail->setFrom($_ENV['From'], 'Información del Sistema');
 
       $mail->addAddress($para);     //Add a recipient
       //$mail->addAddress('ellen@example.com');               //Name is optional
