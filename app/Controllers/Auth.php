@@ -68,6 +68,63 @@ class Auth extends ResourceController
     return redirect()->to(base_url().'home');
   }
 
+  //-------------------------------------------------------------------------
+
+  public function reestablecerContra(){
+
+    //obtiene correo de la web
+    $correo =$this->request->getVar('correo');
+
+    //busca usuario
+    $query = $this->db->query('call listar_usuarioCorreo("'.$correo.'")');
+    $usuario = $query->getRowArray();
+
+    if($usuario!=null){
+
+      //generar codigo
+      $codigo = mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9);
+      
+      $dashboard = new Dashboard();
+
+      $para = $usuario['correo'];
+      $asunto = 'Reestablecer Password';
+      $info = 'Se envia el código de verificación para el cambio de password.';
+      $usuario = $usuario['nombre'].' '.$usuario['apellido'];
+      $cuerpo = '<div>
+                  <p>Codigo de verificación, favor de no compartirlo con nadie, de lo contrario puede ser eliminado</p>
+                  <h4>'.$codigo.'</h4>
+                </div>';
+
+      if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
+
+        $response = [
+          'error'     => 'Error en el envio de correo.'
+        ];
+        return $this->respond($response,400);
+
+      }else{
+
+        //update usuario codigo de recuperacion
+        $query = $this->db->query('call update_codigoRecuperacion('.$usuario['id'].',"'.$codigo.'")');
+        
+        $response = [
+          'message'  => 'Enviado'
+        ];
+        return $this->respond($response,200);
+
+      }
+    
+    }else{
+      $response = [
+        'error'     => 'Usuario no encontrado. Verifica el correo e intenta nuevamente.'
+      ];
+      return $this->respond($response,400);
+    }
+
+    
+
+  }
+
   public function enviarcorreo(){
 
     $dashboard = new Dashboard();
@@ -87,4 +144,5 @@ class Auth extends ResourceController
   }
 
 
-  }
+
+}

@@ -39,6 +39,7 @@ $routes->get('/', 'Auth::index');
 $routes->get('auth', 'Auth::index');
 $routes->post('auth/login', 'Auth::login');
 $routes->get('auth/prueba', 'Auth::enviarcorreo');
+$routes->post('auth/reestablece', 'Auth::reestablecerContra');
 
 //$routes->resource('auth');
 

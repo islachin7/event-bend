@@ -29,7 +29,7 @@ CREATE TABLE usuario (
 
 -------------------------------------------------------------------------
 
-		CREATE procedure listar_usuarioCorreo(IN p_correo VARCHAR(200))
+		CREATE PROCEDURE listar_usuarioCorreo(IN p_correo VARCHAR(200))
               SELECT 	u.id, 
                       u.nombre, 
                       u.apellido, 
@@ -47,7 +47,7 @@ CREATE TABLE usuario (
 -------------------------------------------------------------------------
 
 
-		CREATE procedure listar_usuariosActivos()
+		CREATE PROCEDURE listar_usuariosActivos()
               SELECT 	u.id, 
                       u.nombre, 
                       u.apellido,
@@ -57,6 +57,16 @@ CREATE TABLE usuario (
                 FROM 	usuario u 
           INNER JOIN 	tipousuario tu on tu.id = u.tipousuario
               WHERE 	u.ind_activo = 1;
+
+
+-------------------------------------------------------------------------
+
+
+		CREATE PROCEDURE update_codigoRecuperacion(IN p_id INT,IN p_codigo VARCHAR(6))
+              UPDATE usuario
+                 SET cod_recupe = p_codigo
+               WHERE id = p_id;
+            
  
 
 -------------------------------------------------------------------------
