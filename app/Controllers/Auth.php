@@ -105,7 +105,7 @@ class Auth extends ResourceController
       }else{
 
         //update usuario codigo de recuperacion
-        $query = $this->db->query('call update_codigoRecuperacion('.$usuario['id'].',"'.$codigo.'")');
+        $query = $this->db->query('call update_codigoRecuperacion('.$usuario["id"].',"'.$codigo.'")');
         
         $response = [
           'message'  => 'Enviado'
