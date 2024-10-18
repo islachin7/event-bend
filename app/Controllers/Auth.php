@@ -3,7 +3,7 @@
 
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
-
+use App\Controllers\Dashboard;
 use App\Models\UsuarioModel;
 
 class Auth extends ResourceController
@@ -13,13 +13,16 @@ class Auth extends ResourceController
 		$this->db = \Config\Database::connect();
 	}
 
-	public function index()
-	{
+  //-------------------------------------------------------------------------
+
+	public function index(){
     $model = new UsuarioModel();
     $query = $this->db->query('call listar_usuariosActivos()');
     $data = $query->getResult();
     return $this->respond($data, 200);
 	}
+
+  //-------------------------------------------------------------------------
 
   public function login(){
 
@@ -54,15 +57,34 @@ class Auth extends ResourceController
     }
   }
 
+  //-------------------------------------------------------------------------
 
-    public function logout(){
-      $session=session();
-      $session->remove('correo');
-      $session->remove('nombre');
-      $session->remove('idCliente');
-      $session->remove('tipo');
-      return redirect()->to(base_url().'home');
+  public function logout(){
+    $session=session();
+    $session->remove('correo');
+    $session->remove('nombre');
+    $session->remove('idCliente');
+    $session->remove('tipo');
+    return redirect()->to(base_url().'home');
+  }
+
+  public function enviarcorreo(){
+
+    $dashboard = new Dashboard();
+
+    $para = 'islachinvictor7@gmail.com';
+    $asunto = 'prueba';
+    $info = 'picosa';
+    $usuario = 'El dani';
+    $cuerpo = '<p>Hola Dani</p>';
+
+    if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
+      echo "noooooo";
+    }else{
+      echo "siiiii";
     }
+
+  }
 
 
   }

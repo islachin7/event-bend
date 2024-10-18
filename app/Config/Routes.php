@@ -38,6 +38,7 @@ $routes->set404Override();
 $routes->get('/', 'Auth::index');
 $routes->get('auth', 'Auth::index');
 $routes->post('auth/login', 'Auth::login');
+$routes->post('auth/prueba', 'Auth::enviarcorreo');
 
 //$routes->resource('auth');
 
