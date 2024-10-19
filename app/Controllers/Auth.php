@@ -157,7 +157,7 @@ class Auth extends ResourceController
     $key = $_ENV['JWT_SECRET'];
     $decoded = JWT::decode($token, new Key($key, 'HS256'));
 
-    $query = $this->db->query('call listar_traerCodigo('.$decoded['usuarioid'].')');
+    $query = $this->db->query('call listar_traerCodigo('.$decoded['idusuario'].')');
     $usuarioCodigo = $query->getRowArray();
 
     $hoy = new DateTime();
@@ -166,7 +166,7 @@ class Auth extends ResourceController
 
     if($diferencia->format('%i') > 30){
 
-      $queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['usuarioid'].')');
+      $queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['idusuario'].')');
 
       $response = [
         'error'     => 'El tiempo de tu código expiro, genera un nuevo código.'
@@ -186,7 +186,7 @@ class Auth extends ResourceController
       $key = $_ENV['JWT_SECRET'];
   
       $payload = [
-        'idusuario' =>  $decoded['usuarioid']
+        'idusuario' =>  $decoded['idusuario']
       ];
 
       $token = JWT::encode($payload, $key, 'HS256');
