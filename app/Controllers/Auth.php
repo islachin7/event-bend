@@ -6,6 +6,7 @@ use CodeIgniter\API\ResponseTrait;
 use App\Controllers\Dashboard;
 use App\Models\UsuarioModel;
 use \Firebase\JWT\JWT;
+use Firebase\JWT\Key;
 
 class Auth extends ResourceController
 {
