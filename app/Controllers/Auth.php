@@ -177,7 +177,7 @@ class Auth extends ResourceController
       ];
       return $this->respond($response,400);
 
-    }elseif($codigo != $usuarioCodigo){
+    }elseif($codigo != $usuarioCodigo['cod_recupe']){
 
       $response = [
         'error'     => 'El código no coincide. vuelve a intentarlo'
