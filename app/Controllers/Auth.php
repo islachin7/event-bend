@@ -157,6 +157,8 @@ class Auth extends ResourceController
     $key = $_ENV['JWT_SECRET'];
     $decoded = JWT::decode($token, new Key($key, 'HS256'));
 
+    echo var_dump($decoded);
+
     $query = $this->db->query('call listar_traerCodigo('.$decoded['idusuario'].')');
     $usuarioCodigo = $query->getRowArray();
 
