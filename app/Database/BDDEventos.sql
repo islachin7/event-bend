@@ -86,7 +86,7 @@ CREATE TABLE usuario_recuperacion (
               UPDATE  usuario
                  SET  password = p_pass,
                  SET  fecha_actualizacion = NOW()
-               WHERE  u.id = p_id;
+               WHERE  id = p_id;
 
 -------------------------------------------------------------------------
 

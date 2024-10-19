@@ -33,10 +33,10 @@ class PruebasDML extends BaseController
   
      $query2 = $db->query("
      CREATE PROCEDURE update_passwordReset(IN p_id INT,IN p_pass VARCHAR(255))
-     UPDATE  usuario
-        SET  password = p_pass,
-        SET  fecha_actualizacion = NOW()
-      WHERE  u.id = p_id;
+              UPDATE  usuario
+                 SET  password = p_pass,
+                 SET  fecha_actualizacion = NOW()
+               WHERE  id = p_id;
       ");
   
   
