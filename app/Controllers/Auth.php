@@ -150,14 +150,7 @@ class Auth extends ResourceController
   public function verificacodigo(){
 
     $token =$this->request->getVar('token');
-    $caj1  =$this->request->getVar('caj1');
-    $caj2  =$this->request->getVar('caj2');
-    $caj3  =$this->request->getVar('caj3');
-    $caj4  =$this->request->getVar('caj4');
-    $caj5  =$this->request->getVar('caj5');
-    $caj6  =$this->request->getVar('caj6');
-
-    $codigo = $caj1.''.$caj2.''.$caj3.''.$caj4.''.$caj5.''.$caj6;
+    $codigo  =$this->request->getVar('codigo');
 
     // JWT
     $key = $_ENV['JWT_SECRET'];
