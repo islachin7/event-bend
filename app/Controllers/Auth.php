@@ -170,7 +170,7 @@ class Auth extends ResourceController
 
     if($diferencia->format('%i') > 30){
 
-      $queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['idusuario'].')');
+      //$queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['idusuario'].')');
 
       $response = [
         'error'     => 'El tiempo de tu código expiro, genera un nuevo código.'
