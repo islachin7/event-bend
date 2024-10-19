@@ -35,7 +35,7 @@ class PruebasDML extends BaseController
      CREATE PROCEDURE update_passwordReset(IN p_id INT,IN p_pass VARCHAR(255))
               UPDATE  usuario
                  SET  password = p_pass,
-                 SET  fecha_actualizacion = NOW()
+                      fecha_actualizacion = NOW()
                WHERE  id = p_id;
       ");
   
