@@ -96,7 +96,7 @@ class Auth extends ResourceController
       $cuerpo = '<div>
                   <p>Codigo de verificación, favor de no compartirlo con nadie, de lo contrario puede ser eliminado</p>
                   <h4>'.$codigo.'</h4>
-                  <p style="margin:0;"><a href="'.$urlnueva[0].''.$urlnueva[1].'/auth/forgot-password" style="background: #b6bf4a; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><span style="mso-text-raise:10pt;font-weight:bold;">Ingresar</span></a></p>
+                  <p style="margin:0;"><a href="'.$urlnueva[0].':'.$urlnueva[1].'/auth/forgot-password" style="background: #b6bf4a; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><span style="mso-text-raise:10pt;font-weight:bold;">Ingresar</span></a></p>
                 </div>';
 
       if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
