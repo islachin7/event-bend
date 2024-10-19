@@ -205,24 +205,20 @@ class Auth extends ResourceController
 
   }
 
-  public function enviarcorreo(){
+   //-------------------------------------------------------------------------
 
-    $dashboard = new Dashboard();
+  public function cambiarPassword(){
 
-    $para = 'islachinvictor7@gmail.com';
-    $asunto = 'prueba';
-    $info = 'picosa';
-    $usuario = 'El dani';
-    $cuerpo = '<p>Hola Dani</p>';
+    echo "hola";
 
-    if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
-      echo "noooooo";
-    }else{
-      echo "siiiii";
-    }
+    $response = [
+      'error'     => 'El código no coincide. vuelve a intentarlo'
+    ];
+    return $this->respond($response,400);
+
+    echo "hola2";
 
   }
-
 
 
 }

@@ -41,6 +41,7 @@ $routes->post('auth/login', 'Auth::login');
 $routes->get('auth/prueba', 'Auth::enviarcorreo');
 $routes->post('auth/reestablece', 'Auth::reestablecerContra');
 $routes->post('auth/verificar', 'Auth::verificacodigo');
+$routes->post('auth/newpass', 'Auth::cambiarPassword');
 
 // ruta de prueba
 $routes->get('jaja', 'PruebasDML::jaja');
