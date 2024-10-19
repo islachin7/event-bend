@@ -166,7 +166,7 @@ class Auth extends ResourceController
 
     $today = date("Y-m-d H:i:s"); 
     $fecha_envio = date("Y-m-d H:i:s",strtotime($usuarioCodigo['fecha_envio']));
-    $diferencia = $fecha_envio->diff($today);
+    $diferencia = date_diff($fecha_envio,$today);
 
     if($diferencia->format('%i') > 30){
 
