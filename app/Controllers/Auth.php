@@ -104,6 +104,8 @@ class Auth extends ResourceController
 
       }else{
 
+        echo var_dump($usuario);
+
         $id = $usuario['id']*1;
 
         echo $id;
