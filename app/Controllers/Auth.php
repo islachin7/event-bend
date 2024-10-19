@@ -164,8 +164,8 @@ class Auth extends ResourceController
     $query = $this->db->query('call listar_traerCodigo('.$idusu.')');
     $usuarioCodigo = $query->getRowArray();
 
-    $hoy = new DateTime();
-    $fecha_envio = new DateTime($usuarioCodigo['fecha_envio']);
+    $hoy = new Date();
+    $fecha_envio = new Date($usuarioCodigo['fecha_envio']);
     $diferencia = $fecha_envio->diff($hoy);
 
     if($diferencia->format('%i') > 30){
