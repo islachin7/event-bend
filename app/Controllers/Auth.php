@@ -159,8 +159,6 @@ class Auth extends ResourceController
 
     $idusu = $decoded->idusuario;
 
-    echo $idusu;
-
     $query = $this->db->query('call listar_traerCodigo('.$idusu.')');
     $usuarioCodigo = $query->getRowArray();
 
