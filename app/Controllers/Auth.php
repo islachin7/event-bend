@@ -218,6 +218,11 @@ class Auth extends ResourceController
 
     echo "hola2";
 
+    $response = [
+      'error'     => 'El código no coincide. vuelve a intentarlo'
+    ];
+    return $this->respond($response,200);
+
   }
 
 
