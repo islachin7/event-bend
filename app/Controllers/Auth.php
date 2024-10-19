@@ -170,7 +170,8 @@ class Auth extends ResourceController
 
     echo var_dump(date("Y-m-d H:i:s"));
     echo var_dump(date("Y-m-d H:i:s",strtotime($usuarioCodigo['fecha_envio'])));
-
+    echo var_dump($diferencia->format('%i'));
+    
     if($diferencia->format('%i') > 30){
 
       //$queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['idusuario'].')');
