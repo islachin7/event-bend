@@ -82,6 +82,15 @@ CREATE TABLE usuario_recuperacion (
 -------------------------------------------------------------------------
 
 
+		CREATE PROCEDURE update_passwordReset(IN p_id INT,IN p_pass VARCHAR(255))
+              UPDATE  usuario
+                 SET  password = p_pass,
+                 SET  fecha_actualizacion = NOW()
+               WHERE  u.id = p_id;
+
+-------------------------------------------------------------------------
+
+
 		CREATE PROCEDURE insert_codigoRecuperacion(IN p_id INT,IN p_codigo VARCHAR(6))
         INSERT INTO usuario_recuperacion(id,usuarioid,cod_recupe,fecha_envio)
                VALUES (NULL,p_id,p_codigo,NOW());

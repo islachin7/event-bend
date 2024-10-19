@@ -77,6 +77,16 @@ class Auth extends ResourceController
     //obtiene correo de la web
     $correo =$this->request->getVar('correo');
 
+    //validacion de corrreo
+    if($correo == "" || strlen($correo) <= 0){
+
+      $response = [
+        'error'     => 'Error el correo enviado esta vacio, llene el campo obligatorio.'
+      ];
+      return $this->respond($response,400);
+
+    }
+
     //busca usuario
     $query = $this->db->query('call listar_usuarioCorreo("'.$correo.'")');
     $usuarioOBJ = $query->getRowArray();
@@ -86,10 +96,12 @@ class Auth extends ResourceController
       //generar codigo
       $codigo = mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9);
       
+      //controlador donde esta el metodo de enviar correo
       $dashboard = new Dashboard();
 
       $urlnueva = explode(":", base_url());
 
+      //datos para correo
       $para = 'islachinvictor7@gmail.com';
       $asunto = 'Reestablecer Password';
       $info = 'Se envia el código de verificación para el cambio de password.';
@@ -100,6 +112,7 @@ class Auth extends ResourceController
                   <p style="margin:0;"><a href="'.$urlnueva[0].':'.$urlnueva[1].'/auth/new-password" style="background: #b6bf4a; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><span style="mso-text-raise:10pt;font-weight:bold;">Ingresar</span></a></p>
                 </div>';
 
+      //envio de correo
       if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
 
         $response = [
@@ -118,6 +131,7 @@ class Auth extends ResourceController
 
         $token = JWT::encode($payload, $key, 'HS256');
 
+        //validacion de codigo anterior para reemplazar con el actual
         $query = $this->db->query('call listar_traerCodigo('.$usuarioOBJ['id'].')');
         $usuarioCodigo = $query->getRowArray();
 
@@ -209,20 +223,59 @@ class Auth extends ResourceController
 
   public function cambiarPassword(){
 
-    echo "hola";
+    //obtiene datos de la web
+    $token =$this->request->getVar('token');
+    $newpass =$this->request->getVar('newpassword');
+    $con_newpass =$this->request->getVar('confirm_newpassword');
 
-    $response = [
-      'error'     => 'El código no coincide. vuelve a intentarlo'
-    ];
-    return $this->respond($response,200);
+    //validacion de password
+    if($newpass == "" || strlen($newpass) <= 0){
 
-    echo "hola2";
+      $response = [
+        'error'     => 'Error el nuevo password enviado esta vacio, llene el campo obligatorio.'
+      ];
+      return $this->respond($response,400);
 
-    $response = [
-      'error'     => 'Esdsdintentarlo'
-    ];
-    return $this->respond($response,400);
+    }
 
+    //validacion de password
+    if($con_newpass == "" || strlen($con_newpass) <= 0){
+
+      $response = [
+        'error'     => 'Error la confirmación del password enviado esta vacio, llene el campo obligatorio.'
+      ];
+      return $this->respond($response,400);
+
+    }
+
+    //validacion de password
+    if($newpass != $con_newpass){
+
+      $response = [
+        'error'     => 'La contraseña de verificación no coincide.'
+      ];
+      return $this->respond($response,400);
+
+    }else{
+
+      // JWT
+      $key = $_ENV['JWT_SECRET'];
+      $decoded = JWT::decode($token, new Key($key, 'HS256'));
+      $idusu = $decoded->idusuario;
+
+      //pass hasheado
+      $passuser = password_hash($newpass, PASSWORD_DEFAULT);
+
+      //update al pass
+      $query = $this->db->query('call update_passwordReset('.$idusu.',"'.$passuser.'")');
+        
+      $response = [
+        'message'   => 'Actualización de Password Completada con Exito.'
+      ];
+
+      return $this->respond($response,200);
+
+    }
   }
 
 
