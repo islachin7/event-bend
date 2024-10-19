@@ -102,7 +102,6 @@ class Dashboard extends BaseController
                         </div>
                         <div class="col-lge" style="display:inline-block;width:100%;max-width:395px;vertical-align:top;padding-bottom:20px;font-family:Arial,sans-serif;font-size:16px;line-height:22px;color:#363636;">
                           '.$cuerpo.'
-                          <p style="margin:0;"><a href="'.base_url().'" style="background: #b6bf4a; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><span style="mso-text-raise:10pt;font-weight:bold;">Ingresar</span></a></p>
                         </div>
                       </td>
                     </tr>

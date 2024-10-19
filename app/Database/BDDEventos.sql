@@ -16,7 +16,6 @@ CREATE TABLE usuario (
   apellido varchar(100),
   correo varchar(200),
   password varchar(255),
-  cod_recupe varchar(6),
   ind_veri_corre int,
   ind_activo int,
   fecha_creacion datetime DEFAULT current_timestamp(),
@@ -25,6 +24,17 @@ CREATE TABLE usuario (
   tipousuario int,
   index(tipousuario),
   foreign key (tipousuario) references tipousuario(id)
+);
+
+-------------------------------------------------------------------------
+
+CREATE TABLE usuario_recuperacion (
+  id int primary key AUTO_INCREMENT,
+  usuarioid int,
+  cod_recupe varchar(6),
+  fecha_envio datetime,
+  index(usuarioid),
+  foreign key (usuarioid) references usuario(id)
 );
 
 -------------------------------------------------------------------------
@@ -62,12 +72,26 @@ CREATE TABLE usuario (
 -------------------------------------------------------------------------
 
 
-		CREATE PROCEDURE update_codigoRecuperacion(IN p_id INT,IN p_codigo VARCHAR(6))
-              UPDATE usuario
-                 SET cod_recupe = p_codigo
-               WHERE id = p_id;
+		CREATE PROCEDURE listar_traerCodigo(IN p_id INT)
+              SELECT 	u.cod_recupe,
+                      u.fecha_envio
+                FROM 	usuario_recuperacion u 
+               WHERE  u.usuarioid = p_id;
+
+
+-------------------------------------------------------------------------
+
+
+		CREATE PROCEDURE insert_codigoRecuperacion(IN p_id INT,IN p_codigo VARCHAR(6))
+        INSERT INTO usuario_recuperacion(id,usuarioid,cod_recupe,fecha_envio)
+               VALUES (NULL,p_id,p_codigo,NOW());
             
- 
+ -------------------------------------------------------------------------
+
+
+		CREATE PROCEDURE delete_codigoRecuperacion(IN p_id INT)
+          DELETE FROM usuario_recuperacion
+                WHERE usuarioid = p_id;
 
 -------------------------------------------------------------------------
 

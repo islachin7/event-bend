@@ -5,6 +5,7 @@ use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 use App\Controllers\Dashboard;
 use App\Models\UsuarioModel;
+use \Firebase\JWT\JWT;
 
 class Auth extends ResourceController
 {
@@ -86,6 +87,8 @@ class Auth extends ResourceController
       
       $dashboard = new Dashboard();
 
+      $urlnueva = explode(":", base_url());
+
       $para = 'islachinvictor7@gmail.com';
       $asunto = 'Reestablecer Password';
       $info = 'Se envia el código de verificación para el cambio de password.';
@@ -93,6 +96,7 @@ class Auth extends ResourceController
       $cuerpo = '<div>
                   <p>Codigo de verificación, favor de no compartirlo con nadie, de lo contrario puede ser eliminado</p>
                   <h4>'.$codigo.'</h4>
+                  <p style="margin:0;"><a href="'.$urlnueva[0].''.$urlnueva[1].'/auth/forgot-password" style="background: #b6bf4a; text-decoration: none; padding: 10px 25px; color: #ffffff; border-radius: 4px; display:inline-block; mso-padding-alt:0;text-underline-color:#ff3884"><span style="mso-text-raise:10pt;font-weight:bold;">Ingresar</span></a></p>
                 </div>';
 
       if($dashboard->correosimple($usuario,$info,$cuerpo,$para,$asunto)==false){
@@ -104,12 +108,30 @@ class Auth extends ResourceController
 
       }else{
 
-        //update usuario codigo de recuperacion
-        $query = $this->db->query('call update_codigoRecuperacion('.$usuarioOBJ['id'].',"'.$codigo.'")');
+        // JWT
+        $key = $_ENV['JWT_SECRET'];
+  
+        $payload = [
+          'idusuario' =>  $usuarioOBJ['id']
+        ];
+
+        $token = JWT::encode($payload, $key, 'HS256');
+
+        $query = $this->db->query('call listar_traerCodigo('.$usuarioOBJ['id'].')');
+        $usuarioCodigo = $query->getRowArray();
+
+        if($usuarioCodigo != NULL){
+          $queryElim = $this->db->query('call delete_codigoRecuperacion('.$usuarioOBJ['id'].')');
+        }
+
+        //INSERT usuario codigo de recuperacion
+        $query = $this->db->query('call insert_codigoRecuperacion('.$usuarioOBJ['id'].',"'.$codigo.'")');
         
         $response = [
-          'message'  => 'Enviado'
+          'message'   => 'Enviado',
+          'token'     => $token
         ];
+
         return $this->respond($response,200);
 
       }
@@ -121,7 +143,67 @@ class Auth extends ResourceController
       return $this->respond($response,400);
     }
 
-    
+  }
+
+   //-------------------------------------------------------------------------
+
+  public function verificacodigo(){
+
+    $token =$this->request->getVar('token');
+    $caj1  =$this->request->getVar('caj1');
+    $caj2  =$this->request->getVar('caj2');
+    $caj3  =$this->request->getVar('caj3');
+    $caj4  =$this->request->getVar('caj4');
+    $caj5  =$this->request->getVar('caj5');
+    $caj6  =$this->request->getVar('caj6');
+
+    $codigo = $caj1.''.$caj2.''.$caj3.''.$caj4.''.$caj5.''.$caj6;
+
+    // JWT
+    $key = $_ENV['JWT_SECRET'];
+    $decoded = JWT::decode($token, new Key($key, 'HS256'));
+
+    $query = $this->db->query('call listar_traerCodigo('.$decoded['usuarioid'].')');
+    $usuarioCodigo = $query->getRowArray();
+
+    $hoy = new DateTime();
+    $fecha_envio = new DateTime($usuarioCodigo['fecha_envio']);
+    $diferencia = $fecha_envio->diff($hoy);
+
+    if($diferencia->format('%i') > 30){
+
+      $queryElim = $this->db->query('call delete_codigoRecuperacion('.$decoded['usuarioid'].')');
+
+      $response = [
+        'error'     => 'El tiempo de tu código expiro, genera un nuevo código.'
+      ];
+      return $this->respond($response,400);
+
+    }elseif($codigo != $usuarioCodigo){
+
+      $response = [
+        'error'     => 'El código no coincide. vuelve a intentarlo'
+      ];
+      return $this->respond($response,400);
+
+    }else{
+
+      // JWT
+      $key = $_ENV['JWT_SECRET'];
+  
+      $payload = [
+        'idusuario' =>  $decoded['usuarioid']
+      ];
+
+      $token = JWT::encode($payload, $key, 'HS256');
+
+      $response = [
+        'message'   => 'Validación Exitosa.',
+        'token'     => $token
+      ];
+      return $this->respond($response,200);
+
+    }
 
   }
 

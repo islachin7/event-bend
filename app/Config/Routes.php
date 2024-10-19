@@ -40,7 +40,7 @@ $routes->get('auth', 'Auth::index');
 $routes->post('auth/login', 'Auth::login');
 $routes->get('auth/prueba', 'Auth::enviarcorreo');
 $routes->post('auth/reestablece', 'Auth::reestablecerContra');
-
+$routes->post('auth/verificar', 'Auth::verificacodigo');
 
 // ruta de prueba
 $routes->get('jaja', 'PruebasDML::jaja');

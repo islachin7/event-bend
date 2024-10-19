@@ -11,4 +11,6 @@ writable/cache/
 writable/session/
 writable/uploads/
 
+# Ignorar .env
 git rm --cached .env
+.env
