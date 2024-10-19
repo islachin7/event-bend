@@ -190,7 +190,7 @@ class Auth extends ResourceController
       $key = $_ENV['JWT_SECRET'];
   
       $payload = [
-        'idusuario' =>  $decoded['idusuario']
+        'idusuario' =>  $idusu
       ];
 
       $token = JWT::encode($payload, $key, 'HS256');
