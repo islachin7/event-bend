@@ -104,7 +104,7 @@ class Auth extends ResourceController
 
       }else{
 
-        $id = $usuario['id'];
+        $id = $usuario['id']*1;
 
         //update usuario codigo de recuperacion
         $query = $this->db->query('call update_codigoRecuperacion('.$id.',"'.$codigo.'")');
