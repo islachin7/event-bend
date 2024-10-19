@@ -77,9 +77,9 @@ class Auth extends ResourceController
 
     //busca usuario
     $query = $this->db->query('call listar_usuarioCorreo("'.$correo.'")');
-    $usuario = $query->getRowArray();
+    $usuarioOBJ = $query->getRowArray();
 
-    if($usuario!=null){
+    if($usuarioOBJ!=null){
 
       //generar codigo
       $codigo = mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9).''.mt_rand(0,9);
@@ -89,7 +89,7 @@ class Auth extends ResourceController
       $para = 'islachinvictor7@gmail.com';
       $asunto = 'Reestablecer Password';
       $info = 'Se envia el código de verificación para el cambio de password.';
-      $usuario = $usuario['nombre'].' '.$usuario['apellido'];
+      $usuario = $usuarioOBJ['nombre'].' '.$usuarioOBJ['apellido'];
       $cuerpo = '<div>
                   <p>Codigo de verificación, favor de no compartirlo con nadie, de lo contrario puede ser eliminado</p>
                   <h4>'.$codigo.'</h4>
@@ -104,14 +104,8 @@ class Auth extends ResourceController
 
       }else{
 
-        echo var_dump($usuario);
-
-        $id = $usuario['id']*1;
-
-        echo $id;
-
         //update usuario codigo de recuperacion
-        $query2 = $this->db->query('call update_codigoRecuperacion('.$id.',"'.$codigo.'")');
+        $query = $this->db->query('call update_codigoRecuperacion('.$usuarioOBJ['id'].',"'.$codigo.'")');
         
         $response = [
           'message'  => 'Enviado'
