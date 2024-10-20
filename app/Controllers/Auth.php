@@ -32,6 +32,26 @@ class Auth extends ResourceController
     $correo =$this->request->getVar('correo');
     $password =$this->request->getVar('password');
 
+    //validacion de correo
+    if($correo == "" || strlen($correo) <= 0){
+
+      $response = [
+        'error'     => 'Error: Campo correo se encuentra vacio.'
+      ];
+      return $this->respond($response,400);
+
+    }
+
+    //validacion de password
+    if($password == "" || strlen($password) <= 0){
+
+      $response = [
+        'error'     => 'Error: Campo password se encuentra vacio.'
+      ];
+      return $this->respond($response,400);
+
+    }
+
     $query = $this->db->query('call listar_usuarioCorreo("'.$correo.'")');
     $usuario = $query->getRowArray();
 
@@ -39,8 +59,18 @@ class Auth extends ResourceController
 
       if(password_verify($password, $usuario['password'])){
 
+         // JWT
+        $key = $_ENV['JWT_SECRET'];
+  
+        $payload = [
+          'idusuario' =>  $usuario['id']
+        ];
+
+        $token = JWT::encode($payload, $key, 'HS256');
+
         $response = [
-          'message'  => 'Ingreso'
+          'message' => 'Ingreso',
+          'token'   => $token
         ];
         return $this->respond($response,200);
 
@@ -166,6 +196,16 @@ class Auth extends ResourceController
 
     $token =$this->request->getVar('token');
     $codigo  =$this->request->getVar('codigo');
+
+    //validacion de codigo
+    if($codigo == "" || strlen($codigo) <= 0){
+
+      $response = [
+        'error'     => 'Código vacio, intentar nuevamente.'
+      ];
+      return $this->respond($response,400);
+
+    }
 
     // JWT
     $key = $_ENV['JWT_SECRET'];
