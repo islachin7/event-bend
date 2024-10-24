@@ -99,6 +99,14 @@
                      UPDATE  direccion
                      SET  descripcion_dire = p_descripcion_dire
                      WHERE  id = p_id;
+
+-------------------------------------------------------------------------
+
+		CREATE PROCEDURE update_direccion_acti( IN p_id INT)
+                     UPDATE  direccion
+                     SET  fecha_inactivo = NULL,
+                          ind_activo = 1
+                     WHERE  id = p_id;
             
  -------------------------------------------------------------------------
 
