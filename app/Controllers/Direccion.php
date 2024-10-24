@@ -75,7 +75,7 @@ class Direccion extends ResourceController
     public function update_direccion(){
         $p_id_direccion =$this->request->getVar('p_id_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
-        $p_ind_activo =$this->request->getVar('p_ind_activo');
+        $p_ind_activo = $this->request->getVar('p_ind_activo');
 
         //validacion de id_direccion
         if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
@@ -104,6 +104,9 @@ class Direccion extends ResourceController
             ];
             return $this->respond($response,400);
         }
+
+        echo $p_ind_activo;
+        echo strlen($p_ind_activo);
 
         //validacion de id_direccion
         if($p_ind_activo == "" || strlen($p_ind_activo) <= 0){
