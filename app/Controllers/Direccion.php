@@ -60,7 +60,7 @@ class Direccion extends ResourceController
 
     //--------------------------------------------------------------------
 
-    public function update(){
+    public function update_direccion(){
         $p_id_direccion =$this->request->getVar('p_id_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
 
