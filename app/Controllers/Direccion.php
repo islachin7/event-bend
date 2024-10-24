@@ -51,11 +51,23 @@ class Direccion extends ResourceController
             ];
             return $this->respond($response,400);
         }
-        else{
-            $query = $this->db->query('call listar_direccion("'.$p_id_direccion.'")');
-            $data = $query->getResult();
-            return $this->respond($data, 200);
+
+        //busca direccion
+        $busca = $this->db->query('call listar_direccion('.$p_id_direccion.')');
+        $direccion = $busca->getRowArray();
+
+        //validacion de direccion
+        if($direccion == null){
+            $response = [
+            'error'     => 'Error, no existe la dirección.'
+            ];
+            return $this->respond($response,400);
         }
+
+        $query = $this->db->query('call listar_direccion("'.$p_id_direccion.'")');
+        $data = $query->getResult();
+        return $this->respond($data, 200);
+        
 	}
 
     //--------------------------------------------------------------------
