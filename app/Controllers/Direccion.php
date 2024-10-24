@@ -105,6 +105,14 @@ class Direccion extends ResourceController
             return $this->respond($response,400);
         }
 
+        //validacion de id_direccion
+        if($p_ind_activo == "" || strlen($p_ind_activo) <= 0){
+            $response = [
+            'error'     => 'Error, no existe indicador activo.'
+            ];
+            return $this->respond($response,400);
+        }
+
         if($p_ind_activo){
             $query = $this->db->query('call update_direccion('.$p_id_direccion.',"'.$p_descripcion_dire.'")');
         }else{
