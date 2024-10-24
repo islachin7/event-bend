@@ -104,7 +104,7 @@ class Direccion extends ResourceController
 
     //--------------------------------------------------------------------
 
-    public function delete(){
+    public function delete_direccion(){
         $p_id_direccion =$this->request->getVar('p_id_direccion');
 
         //validacion de id_direccion

@@ -53,7 +53,7 @@ $routes->get('direccion', 'Direccion::index');
 $routes->post('direccion/crear', 'Direccion::create');
 $routes->get('direccion/buscar', 'Direccion::read');
 $routes->put('direccion/actualizar', 'Direccion::update_direccion');
-$routes->delete('direccion/eliminar', 'Direccion::delete');
+$routes->delete('direccion/eliminar', 'Direccion::delete_direccion');
 
 
 
