@@ -113,7 +113,7 @@ class Direccion extends ResourceController
             return $this->respond($response,400);
         }
 
-        if($p_ind_activo){
+        if($p_ind_activo == 0){
             $query = $this->db->query('call update_direccion('.$p_id_direccion.',"'.$p_descripcion_dire.'")');
         }else{
             $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
