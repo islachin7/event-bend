@@ -18,7 +18,6 @@ class Auth extends ResourceController
   //-------------------------------------------------------------------------
 
 	public function index(){
-    $model = new UsuarioModel();
     $query = $this->db->query('call listar_usuariosActivos()');
     $data = $query->getResult();
     return $this->respond($data, 200);
@@ -28,7 +27,6 @@ class Auth extends ResourceController
 
   public function login(){
 
-    $model = new UsuarioModel();
     $correo =$this->request->getVar('correo');
     $password =$this->request->getVar('password');
 
@@ -173,7 +171,7 @@ class Auth extends ResourceController
         $query = $this->db->query('call insert_codigoRecuperacion('.$usuarioOBJ['id'].',"'.$codigo.'")');
         
         $response = [
-          'message'   => 'Enviado',
+          'message'   => 'Revise su correo y siga las instrucciones.',
           'token'     => $token
         ];
 

@@ -32,7 +32,7 @@ $routes->set404Override();
 
 /**
  * --------------------------------------------------------------------
- * RUTAS DE INDEX
+ * RUTAS DE AUTH
  * --------------------------------------------------------------------
  */
 $routes->get('/', 'Auth::index');
@@ -42,6 +42,22 @@ $routes->get('auth/prueba', 'Auth::enviarcorreo');
 $routes->post('auth/reestablece', 'Auth::reestablecerContra');
 $routes->post('auth/verificar', 'Auth::verificacodigo');
 $routes->post('auth/newpass', 'Auth::cambiarPassword');
+
+
+/**
+ * --------------------------------------------------------------------
+ * RUTAS DE DIRECCION
+ * --------------------------------------------------------------------
+ */
+$routes->get('direccion', 'Direccion::index');
+$routes->post('direccion/crear', 'Direccion::create');
+$routes->get('direccion/buscar', 'Direccion::read');
+$routes->put('direccion/actualizar', 'Direccion::update');
+$routes->delete('direccion/eliminar', 'Direccion::delete');
+
+
+
+
 
 // ruta de prueba
 $routes->get('jaja', 'PruebasDML::jaja');
