@@ -108,6 +108,8 @@ class Direccion extends ResourceController
         echo $p_ind_activo;
         echo strlen($p_ind_activo);
 
+        $p_ind_activo = $p_ind_activo*1;
+
         //validacion de id_direccion
         if($p_ind_activo == "" || strlen($p_ind_activo) <= 0){
             $response = [
