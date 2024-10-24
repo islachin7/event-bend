@@ -144,7 +144,7 @@ class Direccion extends ResourceController
         $response = [
             'message'   => 'Se eliminó con éxito la dirección.'
         ];
-        return $this->respond($data, 200);
+        return $this->respond($response, 200);
 	}
 
     //--------------------------------------------------------------------
