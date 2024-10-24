@@ -3,7 +3,7 @@
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
 
-class Direccion extends BaseController
+class Direccion extends ResourceController
 {
 
     public function __construct(){
