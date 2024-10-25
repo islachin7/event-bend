@@ -8,6 +8,7 @@ class Direccion extends ResourceController
 
     public function __construct(){
         $this->db = \Config\Database::connect();
+        $this->dashboard = new Dashboard();
 	}
 
     //--------------------------------------------------------------------
@@ -18,35 +19,22 @@ class Direccion extends ResourceController
         return $this->respond($data, 200);
 	}
 
-    //--------------------------------------------------------------------
-
-	public function validacion_inicial($variable,$mensaje){
-
-        echo "inicio de funcion";
-
-        if($variable == "" || strlen($variable) <= 0){
-            $response = [
-                'error'     => 'Error, no existe identificador de dirección.'
-                ];
-            return $this->respond($response,400);
-        }else{
-            echo "todo bien";
-        }
-
-        echo "fin de funcion";
-	}
 
 	//--------------------------------------------------------------------
 
     public function create(){
+
+        
 
         $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
         $p_numero_piso =$this->request->getVar('p_numero_piso');
         $p_aforo_max =$this->request->getVar('p_aforo_max');
 
+        echo "inicio";
+
         //validaciones
-        $this->validacion_inicial($p_nombre_direccion,'Error, el dirección ingresada esta vacia, llene el campo obligatorio.');
+        $this->dashboard->validacion_inicial($p_nombre_direccion,'Error, el dirección ingresada esta vacia, llene el campo obligatorio.');
         //$this->validacion_inicial($p_descripcion_dire,'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.');
         //$this->validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
         //$this->validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');

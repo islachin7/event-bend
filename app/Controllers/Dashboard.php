@@ -4,6 +4,8 @@ use App\Libraries\phpmailer;
 use App\Libraries\smtp;
 use App\Libraries\pop;
 use App\Libraries\exception;
+use CodeIgniter\API\ResponseTrait;
+use CodeIgniter\RESTful\ResourceController;
 
 class Dashboard extends BaseController
 {
@@ -129,6 +131,17 @@ class Dashboard extends BaseController
     }
   }
 
+  //--------------------------------------------------------------------
+
+	public function validacion_inicial($variable,$mensaje){
+
+    if($variable == "" || strlen($variable) <= 0){
+        $response = [
+            'error'     => $mensaje
+            ];
+        return $this->respond($response,400);
+    }
+}
 
 }
 
