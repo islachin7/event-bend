@@ -25,7 +25,7 @@ class Direccion extends ResourceController
         echo "inicio de funcion";
 
         if($variable == "" || strlen($variable) <= 0){
-           echo = "jajaj";
+           echo "jajaj";
         }else{
             echo "todo bien";
         }
