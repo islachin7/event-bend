@@ -27,6 +27,8 @@ class Direccion extends ResourceController
             'error'     => $mensaje
             ];
             return $this->respond($response,400);
+        }else{
+            echo "todo bien";
         }
 	}
 
@@ -41,9 +43,9 @@ class Direccion extends ResourceController
 
         //validaciones
         $this->validacion_inicial($p_nombre_direccion,'Error, el dirección ingresada esta vacia, llene el campo obligatorio.');
-        $this->validacion_inicial($p_descripcion_dire,'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.');
-        $this->validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
-        $this->validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');
+        //$this->validacion_inicial($p_descripcion_dire,'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.');
+        //$this->validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
+        //$this->validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');
 
         echo "cumplio";
         //insert
