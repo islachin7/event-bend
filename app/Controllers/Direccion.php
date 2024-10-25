@@ -25,7 +25,10 @@ class Direccion extends ResourceController
         echo "inicio de funcion";
 
         if($variable == "" || strlen($variable) <= 0){
-           echo "jajaj";
+            $response = [
+                'error'     => 'Error, no existe identificador de dirección.'
+                ];
+            return $this->respond($response,400);
         }else{
             echo "todo bien";
         }
