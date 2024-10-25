@@ -45,13 +45,15 @@ class Direccion extends ResourceController
         $this->validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
         $this->validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');
 
+        echo "cumplio";
         //insert
+        /*
         $query = $this->db->query('call insert_direccion("'.$p_descripcion_dire.'")');
         $response = [
             'message'   => 'Se generó con éxito la dirección.'
         ];
         return $this->respond($response,200);
-        
+        */
 	}
 
     //--------------------------------------------------------------------
