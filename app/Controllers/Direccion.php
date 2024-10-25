@@ -22,14 +22,15 @@ class Direccion extends ResourceController
 
 	public function validacion_inicial($variable,$mensaje){
 
+        echo "inicio de funcion";
+
         if($variable == "" || strlen($variable) <= 0){
-            $response = [
-            'error'     => $mensaje
-            ];
-            return $this->respond($response,400);
+           echo = "jajaj";
         }else{
             echo "todo bien";
         }
+
+        echo "fin de funcion";
 	}
 
 	//--------------------------------------------------------------------
