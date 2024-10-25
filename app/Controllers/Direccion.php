@@ -85,7 +85,7 @@ class Direccion extends ResourceController
         
 	}
 
-    $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
+   // $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
 
     //--------------------------------------------------------------------
 
