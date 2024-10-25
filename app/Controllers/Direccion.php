@@ -12,31 +12,46 @@ class Direccion extends ResourceController
 
     //--------------------------------------------------------------------
 
-	public function index(){
+    public function index(){
         $query = $this->db->query('call listar_direcciones()');
         $data = $query->getResult();
         return $this->respond($data, 200);
 	}
 
+    //--------------------------------------------------------------------
+
+	public function validacion_inicial($variable,$mensaje){
+
+        if($variable == "" || strlen($variable) <= 0){
+            $response = [
+            'error'     => $mensaje
+            ];
+            return $this->respond($response,400);
+        }
+	}
+
 	//--------------------------------------------------------------------
 
     public function create(){
-        $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
 
-        //validacion de direccion
-        if($p_descripcion_dire == "" || strlen($p_descripcion_dire) <= 0){
-            $response = [
-            'error'     => 'Error, la dirección ingresada esta vacia, llene el campo obligatorio.'
-            ];
-            return $this->respond($response,400);
-        }else{
-            //insert
-            $query = $this->db->query('call insert_direccion("'.$p_descripcion_dire.'")');
-            $response = [
-                'message'   => 'Se generó con éxito la dirección.'
-            ];
-            return $this->respond($response,200);
-        }
+        $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
+        $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
+        $p_numero_piso =$this->request->getVar('p_numero_piso');
+        $p_aforo_max =$this->request->getVar('p_aforo_max');
+
+        //validaciones
+        validacion_inicial($p_nombre_direccion,'Error, el dirección ingresada esta vacia, llene el campo obligatorio.');
+        validacion_inicial($p_descripcion_dire,'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.');
+        validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
+        validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');
+
+        //insert
+        $query = $this->db->query('call insert_direccion("'.$p_descripcion_dire.'")');
+        $response = [
+            'message'   => 'Se generó con éxito la dirección.'
+        ];
+        return $this->respond($response,200);
+        
 	}
 
     //--------------------------------------------------------------------
@@ -70,13 +85,13 @@ class Direccion extends ResourceController
         
 	}
 
+    $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
+
     //--------------------------------------------------------------------
 
     public function update_direccion(){
         $p_id_direccion =$this->request->getVar('p_id_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
-        $p_ind_activo = $this->request->getVar('p_ind_activo');
-        $ind_activo = 0;
 
         //validacion de id_direccion
         if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
@@ -106,16 +121,8 @@ class Direccion extends ResourceController
             return $this->respond($response,400);
         }
 
-        if($p_ind_activo == 1){
-            $ind_activo = 1;
-        }
-
-        if($ind_activo == 0){
-            $query = $this->db->query('call update_direccion('.$p_id_direccion.',"'.$p_descripcion_dire.'")');
-        }else{
-            $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
-        }
-
+        //UPDATE
+        $query = $this->db->query('call update_direccion('.$p_id_direccion.',"'.$p_descripcion_dire.'")');
         $response = [
             'message'   => 'Se actualizó con éxito la dirección.'
         ];

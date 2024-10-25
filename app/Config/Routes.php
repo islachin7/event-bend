@@ -53,6 +53,7 @@ $routes->get('direccion', 'Direccion::index');
 $routes->post('direccion/crear', 'Direccion::create');
 $routes->get('direccion/buscar', 'Direccion::read');
 $routes->put('direccion/actualizar', 'Direccion::update_direccion');
+$routes->put('direccion/activar', 'Direccion::activate');
 $routes->delete('direccion/eliminar', 'Direccion::delete_direccion');
 
 
@@ -60,7 +61,7 @@ $routes->delete('direccion/eliminar', 'Direccion::delete_direccion');
 
 
 // ruta de prueba
-$routes->get('jaja', 'PruebasDML::jaja');
+//$routes->get('jaja', 'PruebasDML::jaja');
 
 //$routes->resource('auth');
 

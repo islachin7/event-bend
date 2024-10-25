@@ -87,17 +87,41 @@
 
 -------------------------------------------------------------------------
 
-		CREATE PROCEDURE insert_direccion(IN p_descripcion_dire VARCHAR(300))
-                     INSERT INTO direccion(id,descripcion_dire,fecha_inactivo,ind_activo)
-                            VALUES (NULL,p_descripcion_dire,NULL,1);
+		CREATE PROCEDURE insert_direccion( IN p_nombre_direccion VARCHAR(300),
+                                                 IN p_descripcion_dire VARCHAR(300),
+                                                 IN p_numero_piso INT,
+                                                 IN p_aforo_max INT
+                                               )
+                     INSERT INTO direccion( id,
+                                            nombre_direccion,
+                                            descripcion_dire,
+                                            numero_piso,
+                                            aforo_max,
+                                            fecha_inactivo,
+                                            ind_activo)
+
+                                   VALUES ( NULL,
+                                            p_nombre_direccion,
+                                            p_descripcion_dire,
+                                            p_numero_piso,
+                                            p_aforo_max,
+                                            NULL,
+                                            1
+                                          );
 
 -------------------------------------------------------------------------
 
 		CREATE PROCEDURE update_direccion( IN p_id INT,
-                                                 IN p_descripcion_dire VARCHAR(300)
-                                                 )
+                                                 IN p_nombre_direccion VARCHAR(300),
+                                                 IN p_descripcion_dire VARCHAR(300),
+                                                 IN p_numero_piso INT,
+                                                 IN p_aforo_max INT
+                                                )
                      UPDATE  direccion
-                     SET  descripcion_dire = p_descripcion_dire
+                        SET  nombre_direccion =  p_nombre_direccion,            
+                             descripcion_dire =  p_descripcion_dire,            
+                             numero_piso      =  p_numero_piso,     
+                             aforo_max        =  p_aforo_max     
                      WHERE  id = p_id;
 
 -------------------------------------------------------------------------

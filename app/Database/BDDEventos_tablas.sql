@@ -41,7 +41,10 @@ CREATE TABLE usuario_recuperacion (
 
 CREATE TABLE direccion (
   id                int primary key AUTO_INCREMENT,
+  nombre_direccion  varchar(300),
   descripcion_dire  varchar(300),
+  numero_piso       int,
+  aforo_max         int,
   fecha_inactivo    datetime,
   ind_activo        int -- 0 inactivo / 1 activo
 );
