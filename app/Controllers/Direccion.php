@@ -6,11 +6,10 @@ use App\Controllers\Validacion;
 
 class Direccion extends ResourceController
 {
-
+    $validacion = new Validacion();
 
     public function __construct(){
         $this->db = \Config\Database::connect();
-        $validacion = new Validacion();
 	}
 
     //--------------------------------------------------------------------
