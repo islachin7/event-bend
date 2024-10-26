@@ -239,6 +239,16 @@
 --
 -------------------------------------------------------------------------
 
+		CREATE PROCEDURE listar_categorias_eventos()
+                     SELECT ce.id,
+                            ce.nombre_cate_evento,
+                            ce.categoria,
+                            c.nombre_categoria
+                       FROM categoria_evento ce
+                 INNER JOIN categoria c ON ce.categoria = c.id;
+
+-------------------------------------------------------------------------
+
 		CREATE PROCEDURE listar_categoria_evento(IN p_categoria INT)
                      SELECT ce.id,
                             ce.nombre_cate_evento,
@@ -246,13 +256,13 @@
                             c.nombre_categoria
                        FROM categoria_evento ce
                  INNER JOIN categoria c ON ce.categoria = c.id
-                      WHERE ce.categoria = p_categoria
-                        AND ce.ind_activo = 1;
+                      WHERE ce.categoria = p_categoria;
 
 -------------------------------------------------------------------------
 
 		CREATE PROCEDURE insert_categoria_evento( IN p_categoria INT,
-                                                        IN p_nombre_cate_evento VARCHAR(300))
+                                                        IN p_nombre_cate_evento VARCHAR(300)
+                                                      )
 
                      INSERT INTO categoria_evento( id,
                                                    categoria,
@@ -276,6 +286,14 @@
                              nombre_cate_evento = p_nombre_cate_evento
                      WHERE  id = p_id;
             
+ -------------------------------------------------------------------------
+
+		CREATE PROCEDURE update_categoria_evento_acti(IN p_id INT)
+                     UPDATE  categoria_evento
+                       SET  fecha_inactivo = null,
+                            ind_activo = 1
+                     WHERE  id = p_id;
+
  -------------------------------------------------------------------------
 
 		CREATE PROCEDURE delete_categoria_evento(IN p_id INT)

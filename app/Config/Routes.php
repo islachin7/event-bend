@@ -81,7 +81,17 @@ $routes->put('categoria/actualizar', 'Categoria::update_categoria');
 $routes->put('categoria/activar', 'Categoria::activate');
 $routes->delete('categoria/eliminar', 'Categoria::delete_categoria');
 
-
+/**
+ * --------------------------------------------------------------------
+ * RUTAS DE CATEGORIA DEL EVENTO
+ * --------------------------------------------------------------------
+ */
+$routes->get('subcategoria', 'CategoriaEvento::index');
+$routes->post('subcategoria/crear', 'CategoriaEvento::create');
+$routes->get('subcategoria/buscar', 'CategoriaEvento::read');
+$routes->put('subcategoria/actualizar', 'CategoriaEvento::update_categoria_evento');
+$routes->put('subcategoria/activar', 'CategoriaEvento::activate');
+$routes->delete('subcategoria/eliminar', 'CategoriaEvento::delete_categoria_evento');
 
 
 

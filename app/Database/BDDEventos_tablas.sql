@@ -76,7 +76,7 @@ CREATE TABLE categoria_evento (
   fecha_inactivo      datetime,
   ind_activo          int, -- 0 inactivo / 1 activo
   index(categoria),
-  foreign key (categoria) references categoria(id),
+  foreign key (categoria) references categoria(id)
 );
 
 -------------------------------------------------------------------------
