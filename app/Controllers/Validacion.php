@@ -14,7 +14,7 @@ class Validacion extends ResourceController
             $response = [
                 'error'     => $mensaje
                 ];
-            return $this->respond($response,400);
+            return respond($response,400);
         }
     }
 
