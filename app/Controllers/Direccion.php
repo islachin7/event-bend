@@ -2,7 +2,6 @@
 
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
-use App\Controllers\Validacion;
 
 class Direccion extends ResourceController
 {
@@ -25,30 +24,48 @@ class Direccion extends ResourceController
 
     public function create(){
 
-        $validacion = new Validacion();
-
         $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
         $p_numero_piso =$this->request->getVar('p_numero_piso');
         $p_aforo_max =$this->request->getVar('p_aforo_max');
 
-        echo "inicio";
 
         //validaciones
-        $validacion->validacion_inicial($p_nombre_direccion,'Error, el dirección ingresada esta vacia, llene el campo obligatorio.');
-        //$this->validacion_inicial($p_descripcion_dire,'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.');
-        //$this->validacion_inicial($p_numero_piso,'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.');
-        //$this->validacion_inicial($p_aforo_max,'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.');
+        if($p_nombre_direccion == "" || strlen($p_nombre_direccion) <= 0){
+            $response = [
+                'error'     => 'Error, el dirección ingresada esta vacia, llene el campo obligatorio.'
+            ];
+            return $this->respond($response,400);
+        }
 
-        echo "cumplio";
+        if($p_descripcion_dire == "" || strlen($p_descripcion_dire) <= 0){
+            $response = [
+                'error'     => 'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.'
+            ];
+            return $this->respond($response,400);
+        }
+
+        if($p_numero_piso == "" || strlen($p_numero_piso) <= 0){
+            $response = [
+                'error'     => 'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.'
+            ];
+            return $this->respond($response,400);
+        }
+
+        if($p_aforo_max == "" || strlen($p_aforo_max) <= 0){
+            $response = [
+                'error'     => 'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.'
+            ];
+            return $this->respond($response,400);
+        }
+
         //insert
-        /*
         $query = $this->db->query('call insert_direccion("'.$p_descripcion_dire.'")');
         $response = [
             'message'   => 'Se generó con éxito la dirección.'
         ];
         return $this->respond($response,200);
-        */
+ 
 	}
 
     //--------------------------------------------------------------------
