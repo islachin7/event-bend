@@ -193,7 +193,7 @@ class Direccion extends ResourceController
         //activar
         $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
         $response = [
-            'message'   => 'Se eliminó con éxito la dirección.'
+            'message'   => 'Se activó con éxito la dirección.'
         ];
         return $this->respond($response, 200);
 	}
