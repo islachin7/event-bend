@@ -18,7 +18,6 @@ class Direccion extends ResourceController
         return $this->respond($data, 200);
 	}
 
-
 	//--------------------------------------------------------------------
 
     public function create(){
