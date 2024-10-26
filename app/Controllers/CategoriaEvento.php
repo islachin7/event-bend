@@ -71,7 +71,7 @@ class CategoriaEvento extends ResourceController
         //validacion de id_categoria_evento
         if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
             $response = [
-            'error'     => 'Error, no existe identificador de categoria_evento.'
+            'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
             return $this->respond($response,400);
         }
@@ -80,7 +80,7 @@ class CategoriaEvento extends ResourceController
         $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
-        //validacion de categoria_evento
+        //validacion de la categoria del evento
         if($categoria_evento == null){
             $response = [
             'error'     => 'Error, no existe la categoria del evento.'
@@ -105,7 +105,7 @@ class CategoriaEvento extends ResourceController
         //validaciones
         if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
             $response = [
-            'error'     => 'Error, no existe identificador de categoria_evento.'
+            'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
             return $this->respond($response,400);
         }
@@ -114,7 +114,7 @@ class CategoriaEvento extends ResourceController
         $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
-        //validacion de categoria_evento
+        //validacion de la categoria del evento
         if($categoria_evento == null){
             $response = [
             'error'     => 'Error, no existe la categoria del evento.'
@@ -177,7 +177,7 @@ class CategoriaEvento extends ResourceController
         $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
-        //validacion de categoria_evento
+        //validacion de la categoria del evento
         if($categoria_evento == null){
             $response = [
             'error'     => 'Error, no existe la categoria del evento.'
@@ -210,7 +210,7 @@ class CategoriaEvento extends ResourceController
         $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
-        //validacion de categoria_evento
+        //validacion de la categoria del evento
         if($categoria_evento == null){
             $response = [
             'error'     => 'Error, no existe la categoria del evento.'
