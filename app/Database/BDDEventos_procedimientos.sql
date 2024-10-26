@@ -249,7 +249,7 @@
 
 -------------------------------------------------------------------------
 
-		CREATE PROCEDURE listar_categoria_evento(IN p_categoria INT)
+		CREATE PROCEDURE listar_categoria_evento_by_categoria(IN p_categoria INT)
                      SELECT ce.id,
                             ce.nombre_cate_evento,
                             ce.categoria,
@@ -257,6 +257,17 @@
                        FROM categoria_evento ce
                  INNER JOIN categoria c ON ce.categoria = c.id
                       WHERE ce.categoria = p_categoria;
+
+-------------------------------------------------------------------------
+
+		CREATE PROCEDURE listar_categoria_evento_by_id(IN p_id INT)
+                     SELECT ce.id,
+                            ce.nombre_cate_evento,
+                            ce.categoria,
+                            c.nombre_categoria
+                       FROM categoria_evento ce
+                 INNER JOIN categoria c ON ce.categoria = c.id
+                      WHERE ce.id = p_id;
 
 -------------------------------------------------------------------------
 

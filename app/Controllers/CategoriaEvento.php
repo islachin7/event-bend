@@ -77,7 +77,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -88,7 +88,38 @@ class CategoriaEvento extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
+        $query = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
+        $data = $query->getResult();
+        return $this->respond($data, 200);
+        
+	}
+
+    //--------------------------------------------------------------------
+
+    public function read_categoria(){
+        $p_id_categoria =$this->request->getVar('p_id_categoria');
+
+         //validacion de id_categoria
+         if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+            $response = [
+            'error'     => 'Error, no existe identificador de categoria.'
+            ];
+            return $this->respond($response,400);
+        }
+
+        //busca categoria
+        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $categoria = $busca->getRowArray();
+
+        //validacion de categoria
+        if($categoria == null){
+            $response = [
+            'error'     => 'Error, no existe la categoria.'
+            ];
+            return $this->respond($response,400);
+        }
+
+        $query = $this->db->query('call listar_categoria_evento_by_categoria('.$p_id_categoria.')');
         $data = $query->getResult();
         return $this->respond($data, 200);
         
@@ -111,7 +142,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -174,7 +205,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -207,7 +238,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
