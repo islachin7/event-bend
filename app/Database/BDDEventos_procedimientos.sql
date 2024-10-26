@@ -193,16 +193,14 @@
 
 		CREATE PROCEDURE listar_categorias()
                      SELECT  *
-                       FROM  categoria c
-                      WHERE  c.ind_activo = 1;
+                       FROM  categoria c;
 
 -------------------------------------------------------------------------
 
 		CREATE PROCEDURE listar_categoria(IN p_id INT)
                      SELECT  *
                        FROM  categoria c
-                      WHERE  c.id = p_id
-                        AND  c.ind_activo = 1;
+                      WHERE  c.id = p_id;
 
 -------------------------------------------------------------------------
 
@@ -217,6 +215,14 @@
                                                  )
                      UPDATE  categoria
                         SET  nombre_categoria = p_nombre_categoria
+                     WHERE  id = p_id;
+
+ -------------------------------------------------------------------------
+
+		CREATE PROCEDURE update_categoria_acti(IN p_id INT)
+                     UPDATE  categoria
+                     SET  fecha_inactivo = null,
+                            ind_activo = 1
                      WHERE  id = p_id;
             
  -------------------------------------------------------------------------

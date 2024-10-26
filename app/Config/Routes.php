@@ -69,6 +69,18 @@ $routes->put('servicio/actualizar', 'Servicio::update_servicio');
 $routes->put('servicio/activar', 'Servicio::activate');
 $routes->delete('servicio/eliminar', 'Servicio::delete_servicio');
 
+/**
+ * --------------------------------------------------------------------
+ * RUTAS DE CATEGORIA
+ * --------------------------------------------------------------------
+ */
+$routes->get('categoria', 'Categoria::index');
+$routes->post('categoria/crear', 'Categoria::create');
+$routes->get('categoria/buscar', 'Categoria::read');
+$routes->put('categoria/actualizar', 'Categoria::update_categoria');
+$routes->put('categoria/activar', 'Categoria::activate');
+$routes->delete('categoria/eliminar', 'Categoria::delete_categoria');
+
 
 
 
