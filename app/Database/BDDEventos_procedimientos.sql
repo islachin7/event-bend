@@ -243,7 +243,9 @@
                      SELECT ce.id,
                             ce.nombre_cate_evento,
                             ce.categoria,
-                            c.nombre_categoria
+                            c.nombre_categoria,
+                            ce.fecha_inactivo,
+                            ce.ind_activo
                        FROM categoria_evento ce
                  INNER JOIN categoria c ON ce.categoria = c.id;
 
@@ -253,7 +255,9 @@
                      SELECT ce.id,
                             ce.nombre_cate_evento,
                             ce.categoria,
-                            c.nombre_categoria
+                            c.nombre_categoria,
+                            ce.fecha_inactivo,
+                            ce.ind_activo
                        FROM categoria_evento ce
                  INNER JOIN categoria c ON ce.categoria = c.id
                       WHERE ce.categoria = p_categoria;
@@ -264,7 +268,9 @@
                      SELECT ce.id,
                             ce.nombre_cate_evento,
                             ce.categoria,
-                            c.nombre_categoria
+                            c.nombre_categoria,
+                            ce.fecha_inactivo,
+                            ce.ind_activo
                        FROM categoria_evento ce
                  INNER JOIN categoria c ON ce.categoria = c.id
                       WHERE ce.id = p_id;
