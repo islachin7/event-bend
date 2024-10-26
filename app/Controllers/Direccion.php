@@ -6,7 +6,7 @@ use App\Controllers\Validacion;
 
 class Direccion extends ResourceController
 {
-    $validacion = new Validacion();
+    
 
     public function __construct(){
         $this->db = \Config\Database::connect();
@@ -25,7 +25,7 @@ class Direccion extends ResourceController
 
     public function create(){
 
-        
+        $validacion = new Validacion();
 
         $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
         $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
