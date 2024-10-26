@@ -57,6 +57,19 @@ $routes->put('direccion/activar', 'Direccion::activate');
 $routes->delete('direccion/eliminar', 'Direccion::delete_direccion');
 
 
+/**
+ * --------------------------------------------------------------------
+ * RUTAS DE SERVICIO
+ * --------------------------------------------------------------------
+ */
+$routes->get('servicio', 'Servicio::index');
+$routes->post('servicio/crear', 'Servicio::create');
+$routes->get('servicio/buscar', 'Servicio::read');
+$routes->put('servicio/actualizar', 'Servicio::update_servicio');
+$routes->put('servicio/activar', 'Servicio::activate');
+$routes->delete('servicio/eliminar', 'Servicio::delete_servicio');
+
+
 
 
 

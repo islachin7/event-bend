@@ -147,15 +147,13 @@
 
 		CREATE PROCEDURE listar_servicios()
                      SELECT  *
-                       FROM  servicio s
-                      WHERE  s.ind_activo = 1;    
+                       FROM  servicio s;    
 -------------------------------------------------------------------------
 
 		CREATE PROCEDURE listar_servicio(IN p_id INT)
                      SELECT  *
                        FROM  servicio s
-                      WHERE  s.id = p_id
-                        AND  s.ind_activo = 1;    
+                      WHERE  s.id = p_id;    
 -------------------------------------------------------------------------
 
 		CREATE PROCEDURE insert_servicio(IN p_nombre_servicio VARCHAR(300))
@@ -166,9 +164,17 @@
 
 		CREATE PROCEDURE update_servicio(  IN p_id INT,
                                                  IN p_nombre_servicio VARCHAR(300)
-                                                 )
+                                              )
                      UPDATE  servicio
                      SET  nombre_servicio = p_nombre_servicio
+                     WHERE  id = p_id;
+
+-------------------------------------------------------------------------
+
+		CREATE PROCEDURE update_servicio_acti( IN p_id INT)
+                     UPDATE  servicio
+                     SET  fecha_inactivo = NULL,
+                          ind_activo = 1
                      WHERE  id = p_id;
             
  -------------------------------------------------------------------------
