@@ -141,20 +141,7 @@ class Evento extends ResourceController
         }
 
         //insert
-        $query = $this->db->query('call insert_evento("'.$p_nombre_organizador.'",'
-                                                      .'"'.$p_apellido_organizador.'",'
-                                                      .'"'.$p_nombre_evento.'",'
-                                                      .$p_tipo_doc.','
-                                                      .'"'.$p_numero_doc.'",'
-                                                      .'"'.$p_celular.'",'
-                                                      .$p_direccion.','
-                                                      .'"'.$p_correo.'",'
-                                                      .'"'.$p_fecha_inicio.'",'
-                                                      .'"'.$p_fecha_fin.'",'
-                                                      .$p_categoria_evento.','
-                                                      .$p_tipo_evento.','
-                                                      .$p_costo.','
-                                                      .$p_estado_evento.')');
+        $query = $this->db->query('call insert_evento("'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'",'.$p_tipo_doc.',"'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$p_fecha_inicio.'","'.$p_fecha_fin.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
             'message'   => 'Se generó con éxito el evento.'
         ];
