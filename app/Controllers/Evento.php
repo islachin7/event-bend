@@ -67,6 +67,18 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
+        //busca direccion
+        $busca = $this->db->query('call listar_direccion('.$p_direccion.')');
+        $direccion = $busca->getRowArray();
+
+        //validacion de direccion
+        if($direccion == null){
+            $response = [
+            'error'     => 'Error, no existe la dirección.'
+            ];
+            return $this->respond($response,400);
+        }
+
         if($p_correo == "" || strlen($p_correo) <= 0){
             $response = [
                 'error'     => 'Error, el correo esta vacio, llene el campo obligatorio.'
@@ -91,6 +103,18 @@ class Evento extends ResourceController
         if($p_categoria_evento == "" || strlen($p_categoria_evento) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono la categoria del evento, seleccione el campo obligatorio.'
+            ];
+            return $this->respond($response,400);
+        }
+
+        //busca categoria_evento
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_categoria_evento.')');
+        $categoria_evento = $busca->getRowArray();
+
+        //validacion de la categoria del evento
+        if($categoria_evento == null){
+            $response = [
+            'error'     => 'Error, no existe la categoria del evento.'
             ];
             return $this->respond($response,400);
         }

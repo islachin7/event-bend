@@ -354,7 +354,7 @@
                             e.estado_evento
                        FROM evento e
                  INNER JOIN direccion d ON e.direccion = d.id
-                 INNER JOIN categoria_evento ce ON ce.categoria_evento = ce.id;
+                 INNER JOIN categoria_evento ce ON e.categoria_evento = ce.id;
 
 -------------------------------------------------------------------------
 		CREATE PROCEDURE listar_evento(IN p_id INT)
@@ -386,7 +386,7 @@
                             e.estado_evento
                        FROM evento e
                  INNER JOIN direccion d ON e.direccion = d.id
-                 INNER JOIN categoria_evento ce ON ce.categoria_evento = ce.id
+                 INNER JOIN categoria_evento ce ON e.categoria_evento = ce.id
                       WHERE e.id = p_id;
 
 -------------------------------------------------------------------------
