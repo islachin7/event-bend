@@ -325,6 +325,38 @@
 --
 -------------------------------------------------------------------------
 
+		CREATE PROCEDURE listar_eventos()
+                     SELECT e.id,
+                            e.nombre_organizador,
+                            e.apellido_organizador,
+                            e.nombre_evento,
+                            CASE WHEN e.tipo_doc = 1 THEN 'DNI'
+                                 WHEN e.tipo_doc = 2 THEN 'RUC'
+                                 ELSE 'C. EXTRANJERO'
+                            END,
+                            e.numero_doc,
+                            e.celular,
+                            e.direccion,
+                            d.descripcion_dire,
+                            e.correo,
+                            e.fecha_inicio,
+                            e.fecha_fin,
+                            e.categoria_evento,
+                            ce.nombre_cate_evento,
+                            CASE WHEN e.tipo_evento = 1 THEN 'GRATIS'
+                                 ELSE 'PAGO'
+                            END,
+                            e.costo,
+                            e.fecha_creacion,
+                            e.fecha_actualizacion,
+                            e.fecha_inactivo,
+                            e.ind_activo,
+                            e.estado_evento
+                       FROM evento e
+                 INNER JOIN direccion d ON e.direccion = d.id
+                 INNER JOIN categoria_evento ce ON ce.categoria_evento = ce.id;
+
+-------------------------------------------------------------------------
 		CREATE PROCEDURE listar_evento(IN p_id INT)
                      SELECT e.id,
                             e.nombre_organizador,
@@ -338,6 +370,7 @@
                             e.celular,
                             e.direccion,
                             d.descripcion_dire,
+                            e.correo,
                             e.fecha_inicio,
                             e.fecha_fin,
                             e.categoria_evento,
@@ -354,8 +387,7 @@
                        FROM evento e
                  INNER JOIN direccion d ON e.direccion = d.id
                  INNER JOIN categoria_evento ce ON ce.categoria_evento = ce.id
-                      WHERE e.id = p_id
-                        AND e.ind_activo = 1;
+                      WHERE e.id = p_id;
 
 -------------------------------------------------------------------------
 
@@ -366,6 +398,7 @@
                                               IN p_numero_doc varchar(20),
                                               IN p_celular varchar(20),
                                               IN p_direccion int,
+                                              IN p_correo varchar(300),
                                               IN p_fecha_inicio datetime,
                                               IN p_fecha_fin datetime,
                                               IN p_categoria_evento int,
@@ -382,6 +415,7 @@
                                                    numero_doc          ,
                                                    celular             ,
                                                    direccion           ,
+                                                   correo              ,
                                                    fecha_inicio        ,
                                                    fecha_fin           ,
                                                    categoria_evento    ,
@@ -402,6 +436,7 @@
                                                    p_numero_doc          ,
                                                    p_celular             ,
                                                    p_direccion           ,
+                                                   p_correo              ,
                                                    p_fecha_inicio        ,
                                                    p_fecha_fin           ,
                                                    p_categoria_evento    ,
@@ -424,6 +459,7 @@
                                               IN p_numero_doc varchar(20),
                                               IN p_celular varchar(20),
                                               IN p_direccion int,
+                                              IN p_correo varchar(300),
                                               IN p_fecha_inicio datetime,
                                               IN p_fecha_fin datetime,
                                               IN p_categoria_evento int,
@@ -439,6 +475,7 @@
                             numero_doc           = p_numero_doc          ,
                             celular              = p_celular             ,
                             direccion            = p_direccion           ,
+                            correo               = p_correo              ,
                             fecha_inicio         = p_fecha_inicio        ,
                             fecha_fin            = p_fecha_fin           ,
                             categoria_evento     = p_categoria_evento    ,
@@ -448,6 +485,14 @@
                             fecha_actualizacion  = NOW()        
                      WHERE  id = p_id;
             
+ -------------------------------------------------------------------------
+
+		CREATE PROCEDURE update_evento_acti(IN p_id INT)
+                     UPDATE evento
+                       SET  fecha_inactivo = null,
+                            ind_activo = 1
+                     WHERE  id = p_id;
+
  -------------------------------------------------------------------------
 
 		CREATE PROCEDURE delete_evento(IN p_id INT)

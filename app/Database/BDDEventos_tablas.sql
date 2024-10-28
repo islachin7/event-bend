@@ -86,14 +86,15 @@ CREATE TABLE evento (
   nombre_organizador    varchar(200),
   apellido_organizador  varchar(200),
   nombre_evento         varchar(500),
-  tipo_doc              int --1 DNI/2 RUC/3 C.EXTRANJERIA,
+  tipo_doc              int, --1 DNI/2 RUC/3 C.EXTRANJERIA
   numero_doc            varchar(20),
   celular               varchar(20),
   direccion             int,
+  correo                varchar(300),
   fecha_inicio          datetime,
   fecha_fin             datetime,
   categoria_evento      int,
-  tipo_evento           int -- 1 Gratis / 2 Pago,
+  tipo_evento           int, -- 1 Gratis / 2 Pago
   costo                 decimal(18,2),
   fecha_creacion        datetime DEFAULT current_timestamp(),
   fecha_actualizacion   datetime DEFAULT current_timestamp(),
