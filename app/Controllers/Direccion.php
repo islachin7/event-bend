@@ -92,7 +92,7 @@ class Direccion extends ResourceController
         }
 
         $query = $this->db->query('call listar_direccion("'.$p_id_direccion.'")');
-        $data = $query->getResult();
+        $data = $query->getRowArray();
         return $this->respond($data, 200);
         
 	}
