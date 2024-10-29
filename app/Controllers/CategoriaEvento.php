@@ -22,12 +22,12 @@ class CategoriaEvento extends ResourceController
 
     public function create(){
 
-        $p_nombre_cate_evento =$this->request->getVar('p_nombre_cate_evento');
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
+        $nombre_cate_evento =$this->request->getVar('nombre_cate_evento');
+        $id_categoria =$this->request->getVar('id_categoria');
 
         //validaciones
         //validacion de id_categoria
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -35,7 +35,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -47,7 +47,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //validacion de nombre de categoria del evento
-        if($p_nombre_cate_evento == "" || strlen($p_nombre_cate_evento) <= 0){
+        if($nombre_cate_evento == "" || strlen($nombre_cate_evento) <= 0){
             $response = [
                 'error'     => 'Error, el nombre de la categoria del evento esta vacio, llene el campo obligatorio.'
             ];
@@ -55,7 +55,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //insert
-        $query = $this->db->query('call insert_categoria_evento('.$p_id_categoria.',"'.$p_nombre_cate_evento.'")');
+        $query = $this->db->query('call insert_categoria_evento('.$id_categoria.',"'.$nombre_cate_evento.'")');
         $response = [
             'message'   => 'Se generó con éxito la categoria del evento.'
         ];
@@ -66,10 +66,10 @@ class CategoriaEvento extends ResourceController
     //--------------------------------------------------------------------
 
     public function read(){
-        $p_id_categoria_evento =$this->request->getVar('p_id_categoria_evento');
+        $id_categoria_evento =$this->request->getVar('id_categoria_evento');
 
         //validacion de id_categoria_evento
-        if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
+        if($id_categoria_evento == "" || strlen($id_categoria_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
@@ -77,7 +77,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -88,8 +88,8 @@ class CategoriaEvento extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
-        $data = $query->getResult();
+        $query = $this->db->query('call listar_categoria_evento_by_id('.$id_categoria_evento.')');
+        $data = $query->getRowArray();
         return $this->respond($data, 200);
         
 	}
@@ -97,10 +97,10 @@ class CategoriaEvento extends ResourceController
     //--------------------------------------------------------------------
 
     public function read_categoria(){
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
+        $id_categoria =$this->request->getVar('id_categoria');
 
          //validacion de id_categoria
-         if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+         if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -108,7 +108,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -119,7 +119,7 @@ class CategoriaEvento extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_categoria_evento_by_categoria('.$p_id_categoria.')');
+        $query = $this->db->query('call listar_categoria_evento_by_categoria('.$id_categoria.')');
         $data = $query->getResult();
         return $this->respond($data, 200);
         
@@ -129,12 +129,12 @@ class CategoriaEvento extends ResourceController
 
     public function update_categoria_evento(){
 
-        $p_id_categoria_evento =$this->request->getVar('p_id_categoria_evento');
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
-        $p_nombre_cate_evento =$this->request->getVar('p_nombre_cate_evento');
+        $id_categoria_evento =$this->request->getVar('id_categoria_evento');
+        $id_categoria =$this->request->getVar('id_categoria');
+        $nombre_cate_evento =$this->request->getVar('nombre_cate_evento');
 
         //validaciones
-        if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
+        if($id_categoria_evento == "" || strlen($id_categoria_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
@@ -142,7 +142,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -155,7 +155,7 @@ class CategoriaEvento extends ResourceController
 
         //validaciones
         //validacion de id_categoria
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -163,7 +163,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -175,7 +175,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //validacion de nombre de categoria evento
-        if($p_nombre_cate_evento == "" || strlen($p_nombre_cate_evento) <= 0){
+        if($nombre_cate_evento == "" || strlen($nombre_cate_evento) <= 0){
             $response = [
                 'error'     => 'Error, el nombre de la categoria del evento esta vacio, llene el campo obligatorio.'
             ];
@@ -183,7 +183,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //UPDATE
-        $query = $this->db->query('call update_categoria_evento('.$p_id_categoria_evento.','.$p_id_categoria.',"'.$p_nombre_cate_evento.'")');
+        $query = $this->db->query('call update_categoria_evento('.$id_categoria_evento.','.$id_categoria.',"'.$nombre_cate_evento.'")');
         $response = [
             'message'   => 'Se actualizó con éxito la categoria del evento.'
         ];
@@ -194,10 +194,10 @@ class CategoriaEvento extends ResourceController
     //--------------------------------------------------------------------
 
     public function activate(){
-        $p_id_categoria_evento =$this->request->getVar('p_id_categoria_evento');
+        $id_categoria_evento =$this->request->getVar('id_categoria_evento');
 
-        //validacion de p_id_categoria_evento
-        if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
+        //validacion de id_categoria_evento
+        if($id_categoria_evento == "" || strlen($id_categoria_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
@@ -205,7 +205,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -217,7 +217,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //activar
-        $query = $this->db->query('call update_categoria_evento_acti('.$p_id_categoria_evento.')');
+        $query = $this->db->query('call update_categoria_evento_acti('.$id_categoria_evento.')');
         $response = [
             'message'   => 'Se activó con éxito la categoria del evento.'
         ];
@@ -227,10 +227,10 @@ class CategoriaEvento extends ResourceController
     //--------------------------------------------------------------------
 
     public function delete_categoria_evento(){
-        $p_id_categoria_evento =$this->request->getVar('p_id_categoria_evento');
+        $id_categoria_evento =$this->request->getVar('id_categoria_evento');
 
-        //validacion de p_id_categoria_evento
-        if($p_id_categoria_evento == "" || strlen($p_id_categoria_evento) <= 0){
+        //validacion de id_categoria_evento
+        if($id_categoria_evento == "" || strlen($id_categoria_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de la categoria del evento.'
             ];
@@ -238,7 +238,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_id_categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$id_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -250,7 +250,7 @@ class CategoriaEvento extends ResourceController
         }
 
         //delete
-        $query = $this->db->query('call delete_categoria_evento('.$p_id_categoria_evento.')');
+        $query = $this->db->query('call delete_categoria_evento('.$id_categoria_evento.')');
         $response = [
             'message'   => 'Se eliminó con éxito la categoria del evento.'
         ];

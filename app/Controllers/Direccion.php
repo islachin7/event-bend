@@ -22,35 +22,35 @@ class Direccion extends ResourceController
 
     public function create(){
 
-        $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
-        $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
-        $p_numero_piso =$this->request->getVar('p_numero_piso');
-        $p_aforo_max =$this->request->getVar('p_aforo_max');
+        $nombre_direccion =$this->request->getVar('nombre_direccion');
+        $descripcion_dire =$this->request->getVar('descripcion_dire');
+        $numero_piso =$this->request->getVar('numero_piso');
+        $aforo_max =$this->request->getVar('aforo_max');
 
 
         //validaciones
-        if($p_nombre_direccion == "" || strlen($p_nombre_direccion) <= 0){
+        if($nombre_direccion == "" || strlen($nombre_direccion) <= 0){
             $response = [
                 'error'     => 'Error, el dirección ingresada esta vacia, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_descripcion_dire == "" || strlen($p_descripcion_dire) <= 0){
+        if($descripcion_dire == "" || strlen($descripcion_dire) <= 0){
             $response = [
                 'error'     => 'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_numero_piso == "" || strlen($p_numero_piso) <= 0){
+        if($numero_piso == "" || strlen($numero_piso) <= 0){
             $response = [
                 'error'     => 'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_aforo_max == "" || strlen($p_aforo_max) <= 0){
+        if($aforo_max == "" || strlen($aforo_max) <= 0){
             $response = [
                 'error'     => 'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.'
             ];
@@ -58,7 +58,7 @@ class Direccion extends ResourceController
         }
 
         //insert
-        $query = $this->db->query('call insert_direccion("'.$p_nombre_direccion.'","'.$p_descripcion_dire.'",'.$p_numero_piso.','.$p_aforo_max.')');
+        $query = $this->db->query('call insert_direccion("'.$nombre_direccion.'","'.$descripcion_dire.'",'.$numero_piso.','.$aforo_max.')');
         $response = [
             'message'   => 'Se generó con éxito la dirección.'
         ];
@@ -69,10 +69,10 @@ class Direccion extends ResourceController
     //--------------------------------------------------------------------
 
     public function read(){
-        $p_id_direccion =$this->request->getVar('p_id_direccion');
+        $id_direccion =$this->request->getVar('id_direccion');
 
         //validacion de id_direccion
-        if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
+        if($id_direccion == "" || strlen($id_direccion) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de dirección.'
             ];
@@ -80,7 +80,7 @@ class Direccion extends ResourceController
         }
 
         //busca direccion
-        $busca = $this->db->query('call listar_direccion('.$p_id_direccion.')');
+        $busca = $this->db->query('call listar_direccion('.$id_direccion.')');
         $direccion = $busca->getRowArray();
 
         //validacion de direccion
@@ -91,7 +91,7 @@ class Direccion extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_direccion("'.$p_id_direccion.'")');
+        $query = $this->db->query('call listar_direccion("'.$id_direccion.'")');
         $data = $query->getRowArray();
         return $this->respond($data, 200);
         
@@ -101,14 +101,14 @@ class Direccion extends ResourceController
 
     public function update_direccion(){
 
-        $p_id_direccion =$this->request->getVar('p_id_direccion');
-        $p_nombre_direccion =$this->request->getVar('p_nombre_direccion');
-        $p_descripcion_dire =$this->request->getVar('p_descripcion_dire');
-        $p_numero_piso =$this->request->getVar('p_numero_piso');
-        $p_aforo_max =$this->request->getVar('p_aforo_max');
+        $id_direccion =$this->request->getVar('id_direccion');
+        $nombre_direccion =$this->request->getVar('nombre_direccion');
+        $descripcion_dire =$this->request->getVar('descripcion_dire');
+        $numero_piso =$this->request->getVar('numero_piso');
+        $aforo_max =$this->request->getVar('aforo_max');
 
         //validacion de id_direccion
-        if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
+        if($id_direccion == "" || strlen($id_direccion) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de dirección.'
             ];
@@ -116,7 +116,7 @@ class Direccion extends ResourceController
         }
 
         //busca direccion
-        $busca = $this->db->query('call listar_direccion('.$p_id_direccion.')');
+        $busca = $this->db->query('call listar_direccion('.$id_direccion.')');
         $direccion = $busca->getRowArray();
 
         //validacion de direccion
@@ -128,28 +128,28 @@ class Direccion extends ResourceController
         }
 
         //validaciones
-        if($p_nombre_direccion == "" || strlen($p_nombre_direccion) <= 0){
+        if($nombre_direccion == "" || strlen($nombre_direccion) <= 0){
             $response = [
                 'error'     => 'Error, el dirección ingresada esta vacia, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_descripcion_dire == "" || strlen($p_descripcion_dire) <= 0){
+        if($descripcion_dire == "" || strlen($descripcion_dire) <= 0){
             $response = [
                 'error'     => 'Error, la descripcion de la dirección ingresada esta vacia, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_numero_piso == "" || strlen($p_numero_piso) <= 0){
+        if($numero_piso == "" || strlen($numero_piso) <= 0){
             $response = [
                 'error'     => 'Error, El número de piso ingresado esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($p_aforo_max == "" || strlen($p_aforo_max) <= 0){
+        if($aforo_max == "" || strlen($aforo_max) <= 0){
             $response = [
                 'error'     => 'Error, El valor de aforo ingresado esta vacio, llene el campo obligatorio.'
             ];
@@ -157,7 +157,7 @@ class Direccion extends ResourceController
         }
 
         //UPDATE
-        $query = $this->db->query('call update_direccion('.$p_id_direccion.',"'.$p_nombre_direccion.'","'.$p_descripcion_dire.'",'.$p_numero_piso.','.$p_aforo_max.')');
+        $query = $this->db->query('call update_direccion('.$id_direccion.',"'.$nombre_direccion.'","'.$descripcion_dire.'",'.$numero_piso.','.$aforo_max.')');
         $response = [
             'message'   => 'Se actualizó con éxito la dirección.'
         ];
@@ -168,10 +168,10 @@ class Direccion extends ResourceController
     //--------------------------------------------------------------------
 
     public function activate(){
-        $p_id_direccion =$this->request->getVar('p_id_direccion');
+        $id_direccion =$this->request->getVar('id_direccion');
 
         //validacion de id_direccion
-        if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
+        if($id_direccion == "" || strlen($id_direccion) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de dirección.'
             ];
@@ -179,7 +179,7 @@ class Direccion extends ResourceController
         }
 
         //busca direccion
-        $busca = $this->db->query('call listar_direccion('.$p_id_direccion.')');
+        $busca = $this->db->query('call listar_direccion('.$id_direccion.')');
         $direccion = $busca->getRowArray();
 
         //validacion de direccion
@@ -191,7 +191,7 @@ class Direccion extends ResourceController
         }
 
         //activar
-        $query = $this->db->query('call update_direccion_acti('.$p_id_direccion.')');
+        $query = $this->db->query('call update_direccion_acti('.$id_direccion.')');
         $response = [
             'message'   => 'Se activó con éxito la dirección.'
         ];
@@ -201,10 +201,10 @@ class Direccion extends ResourceController
     //--------------------------------------------------------------------
 
     public function delete_direccion(){
-        $p_id_direccion =$this->request->getVar('p_id_direccion');
+        $id_direccion =$this->request->getVar('id_direccion');
 
         //validacion de id_direccion
-        if($p_id_direccion == "" || strlen($p_id_direccion) <= 0){
+        if($id_direccion == "" || strlen($id_direccion) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de dirección.'
             ];
@@ -212,7 +212,7 @@ class Direccion extends ResourceController
         }
 
         //busca direccion
-        $busca = $this->db->query('call listar_direccion('.$p_id_direccion.')');
+        $busca = $this->db->query('call listar_direccion('.$id_direccion.')');
         $direccion = $busca->getRowArray();
 
         //validacion de direccion
@@ -224,7 +224,7 @@ class Direccion extends ResourceController
         }
 
         //delete
-        $query = $this->db->query('call delete_direccion('.$p_id_direccion.')');
+        $query = $this->db->query('call delete_direccion('.$id_direccion.')');
         $response = [
             'message'   => 'Se eliminó con éxito la dirección.'
         ];

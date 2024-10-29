@@ -22,11 +22,11 @@ class Categoria extends ResourceController
 
     public function create(){
 
-        $p_nombre_categoria =$this->request->getVar('p_nombre_categoria');
+        $nombre_categoria =$this->request->getVar('nombre_categoria');
 
 
         //validaciones
-        if($p_nombre_categoria == "" || strlen($p_nombre_categoria) <= 0){
+        if($nombre_categoria == "" || strlen($nombre_categoria) <= 0){
             $response = [
                 'error'     => 'Error, el nombre de la categoria esta vacio, llene el campo obligatorio.'
             ];
@@ -34,7 +34,7 @@ class Categoria extends ResourceController
         }
 
         //insert
-        $query = $this->db->query('call insert_categoria("'.$p_nombre_categoria.'")');
+        $query = $this->db->query('call insert_categoria("'.$nombre_categoria.'")');
         $response = [
             'message'   => 'Se generó con éxito la categoria.'
         ];
@@ -45,10 +45,10 @@ class Categoria extends ResourceController
     //--------------------------------------------------------------------
 
     public function read(){
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
+        $id_categoria =$this->request->getVar('id_categoria');
 
         //validacion de id_categoria
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -56,7 +56,7 @@ class Categoria extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -67,8 +67,8 @@ class Categoria extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_categoria("'.$p_id_categoria.'")');
-        $data = $query->getResult();
+        $query = $this->db->query('call listar_categoria("'.$id_categoria.'")');
+        $data = $query->getRowArray();
         return $this->respond($data, 200);
         
 	}
@@ -77,11 +77,11 @@ class Categoria extends ResourceController
 
     public function update_categoria(){
 
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
-        $p_nombre_categoria =$this->request->getVar('p_nombre_categoria');
+        $id_categoria =$this->request->getVar('id_categoria');
+        $nombre_categoria =$this->request->getVar('nombre_categoria');
 
         //validaciones
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -89,7 +89,7 @@ class Categoria extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -101,7 +101,7 @@ class Categoria extends ResourceController
         }
 
         //validaciones
-        if($p_nombre_categoria == "" || strlen($p_nombre_categoria) <= 0){
+        if($nombre_categoria == "" || strlen($nombre_categoria) <= 0){
             $response = [
                 'error'     => 'Error, el nombre de la categoria esta vacio, llene el campo obligatorio.'
             ];
@@ -109,7 +109,7 @@ class Categoria extends ResourceController
         }
 
         //UPDATE
-        $query = $this->db->query('call update_categoria('.$p_id_categoria.',"'.$p_nombre_categoria.'")');
+        $query = $this->db->query('call update_categoria('.$id_categoria.',"'.$nombre_categoria.'")');
         $response = [
             'message'   => 'Se actualizó con éxito la categoria.'
         ];
@@ -120,10 +120,10 @@ class Categoria extends ResourceController
     //--------------------------------------------------------------------
 
     public function activate(){
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
+        $id_categoria =$this->request->getVar('id_categoria');
 
-        //validacion de p_id_categoria
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        //validacion de id_categoria
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -131,7 +131,7 @@ class Categoria extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -143,7 +143,7 @@ class Categoria extends ResourceController
         }
 
         //activar
-        $query = $this->db->query('call update_categoria_acti('.$p_id_categoria.')');
+        $query = $this->db->query('call update_categoria_acti('.$id_categoria.')');
         $response = [
             'message'   => 'Se activó con éxito la categoria.'
         ];
@@ -153,10 +153,10 @@ class Categoria extends ResourceController
     //--------------------------------------------------------------------
 
     public function delete_categoria(){
-        $p_id_categoria =$this->request->getVar('p_id_categoria');
+        $id_categoria =$this->request->getVar('id_categoria');
 
-        //validacion de p_id_categoria
-        if($p_id_categoria == "" || strlen($p_id_categoria) <= 0){
+        //validacion de id_categoria
+        if($id_categoria == "" || strlen($id_categoria) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de categoria.'
             ];
@@ -164,7 +164,7 @@ class Categoria extends ResourceController
         }
 
         //busca categoria
-        $busca = $this->db->query('call listar_categoria('.$p_id_categoria.')');
+        $busca = $this->db->query('call listar_categoria('.$id_categoria.')');
         $categoria = $busca->getRowArray();
 
         //validacion de categoria
@@ -176,7 +176,7 @@ class Categoria extends ResourceController
         }
 
         //delete
-        $query = $this->db->query('call delete_categoria('.$p_id_categoria.')');
+        $query = $this->db->query('call delete_categoria('.$id_categoria.')');
         $response = [
             'message'   => 'Se eliminó con éxito la categoria.'
         ];

@@ -22,11 +22,11 @@ class Servicio extends ResourceController
 
     public function create(){
 
-        $p_nombre_servicio =$this->request->getVar('p_nombre_servicio');
+        $nombre_servicio =$this->request->getVar('nombre_servicio');
 
 
         //validaciones
-        if($p_nombre_servicio == "" || strlen($p_nombre_servicio) <= 0){
+        if($nombre_servicio == "" || strlen($nombre_servicio) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del servicio esta vacio, llene el campo obligatorio.'
             ];
@@ -34,7 +34,7 @@ class Servicio extends ResourceController
         }
 
         //insert
-        $query = $this->db->query('call insert_servicio("'.$p_nombre_servicio.'")');
+        $query = $this->db->query('call insert_servicio("'.$nombre_servicio.'")');
         $response = [
             'message'   => 'Se generó con éxito el servicio.'
         ];
@@ -45,10 +45,10 @@ class Servicio extends ResourceController
     //--------------------------------------------------------------------
 
     public function read(){
-        $p_id_servicio =$this->request->getVar('p_id_servicio');
+        $id_servicio =$this->request->getVar('id_servicio');
 
         //validacion de id_servicio
-        if($p_id_servicio == "" || strlen($p_id_servicio) <= 0){
+        if($id_servicio == "" || strlen($id_servicio) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de servicio.'
             ];
@@ -56,7 +56,7 @@ class Servicio extends ResourceController
         }
 
         //busca servicio
-        $busca = $this->db->query('call listar_servicio('.$p_id_servicio.')');
+        $busca = $this->db->query('call listar_servicio('.$id_servicio.')');
         $servicio = $busca->getRowArray();
 
         //validacion de servicio
@@ -67,8 +67,8 @@ class Servicio extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_servicio("'.$p_id_servicio.'")');
-        $data = $query->getResult();
+        $query = $this->db->query('call listar_servicio("'.$id_servicio.'")');
+        $data = $query->getRowArray();
         return $this->respond($data, 200);
         
 	}
@@ -77,11 +77,11 @@ class Servicio extends ResourceController
 
     public function update_servicio(){
 
-        $p_id_servicio =$this->request->getVar('p_id_servicio');
-        $p_nombre_servicio =$this->request->getVar('p_nombre_servicio');
+        $id_servicio =$this->request->getVar('id_servicio');
+        $nombre_servicio =$this->request->getVar('nombre_servicio');
 
         //validaciones
-        if($p_id_servicio == "" || strlen($p_id_servicio) <= 0){
+        if($id_servicio == "" || strlen($id_servicio) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de servicio.'
             ];
@@ -89,7 +89,7 @@ class Servicio extends ResourceController
         }
 
         //busca servicio
-        $busca = $this->db->query('call listar_servicio('.$p_id_servicio.')');
+        $busca = $this->db->query('call listar_servicio('.$id_servicio.')');
         $servicio = $busca->getRowArray();
 
         //validacion de servicio
@@ -101,7 +101,7 @@ class Servicio extends ResourceController
         }
 
         //validaciones
-        if($p_nombre_servicio == "" || strlen($p_nombre_servicio) <= 0){
+        if($nombre_servicio == "" || strlen($nombre_servicio) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del servicio esta vacio, llene el campo obligatorio.'
             ];
@@ -109,7 +109,7 @@ class Servicio extends ResourceController
         }
 
         //UPDATE
-        $query = $this->db->query('call update_servicio('.$p_id_servicio.',"'.$p_nombre_servicio.'")');
+        $query = $this->db->query('call update_servicio('.$id_servicio.',"'.$nombre_servicio.'")');
         $response = [
             'message'   => 'Se actualizó con éxito el servicio.'
         ];
@@ -120,10 +120,10 @@ class Servicio extends ResourceController
     //--------------------------------------------------------------------
 
     public function activate(){
-        $p_id_servicio =$this->request->getVar('p_id_servicio');
+        $id_servicio =$this->request->getVar('id_servicio');
 
-        //validacion de p_id_servicio
-        if($p_id_servicio == "" || strlen($p_id_servicio) <= 0){
+        //validacion de id_servicio
+        if($id_servicio == "" || strlen($id_servicio) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de servicio.'
             ];
@@ -131,7 +131,7 @@ class Servicio extends ResourceController
         }
 
         //busca servicio
-        $busca = $this->db->query('call listar_servicio('.$p_id_servicio.')');
+        $busca = $this->db->query('call listar_servicio('.$id_servicio.')');
         $servicio = $busca->getRowArray();
 
         //validacion de servicio
@@ -143,7 +143,7 @@ class Servicio extends ResourceController
         }
 
         //activar
-        $query = $this->db->query('call update_servicio_acti('.$p_id_servicio.')');
+        $query = $this->db->query('call update_servicio_acti('.$id_servicio.')');
         $response = [
             'message'   => 'Se activó con éxito el servicio.'
         ];
@@ -153,10 +153,10 @@ class Servicio extends ResourceController
     //--------------------------------------------------------------------
 
     public function delete_servicio(){
-        $p_id_servicio =$this->request->getVar('p_id_servicio');
+        $id_servicio =$this->request->getVar('id_servicio');
 
-        //validacion de p_id_servicio
-        if($p_id_servicio == "" || strlen($p_id_servicio) <= 0){
+        //validacion de id_servicio
+        if($id_servicio == "" || strlen($id_servicio) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de servicio.'
             ];
@@ -164,7 +164,7 @@ class Servicio extends ResourceController
         }
 
         //busca servicio
-        $busca = $this->db->query('call listar_servicio('.$p_id_servicio.')');
+        $busca = $this->db->query('call listar_servicio('.$id_servicio.')');
         $servicio = $busca->getRowArray();
 
         //validacion de servicio
@@ -176,7 +176,7 @@ class Servicio extends ResourceController
         }
 
         //delete
-        $query = $this->db->query('call delete_servicio('.$p_id_servicio.')');
+        $query = $this->db->query('call delete_servicio('.$id_servicio.')');
         $response = [
             'message'   => 'Se eliminó con éxito el servicio.'
         ];
