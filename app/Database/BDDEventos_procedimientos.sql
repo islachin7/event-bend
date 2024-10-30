@@ -333,7 +333,7 @@
                             CASE WHEN e.tipo_doc = 1 THEN 'DNI'
                                  WHEN e.tipo_doc = 2 THEN 'RUC'
                                  ELSE 'C. EXTRANJERO'
-                            END,
+                            END tipo_doc,
                             e.numero_doc,
                             e.celular,
                             e.direccion,
@@ -345,7 +345,7 @@
                             ce.nombre_cate_evento,
                             CASE WHEN e.tipo_evento = 1 THEN 'GRATIS'
                                  ELSE 'PAGO'
-                            END,
+                            END tipo_evento,
                             e.costo,
                             e.fecha_creacion,
                             e.fecha_actualizacion,
@@ -365,7 +365,7 @@
                             CASE WHEN e.tipo_doc = 1 THEN 'DNI'
                                  WHEN e.tipo_doc = 2 THEN 'RUC'
                                  ELSE 'C. EXTRANJERO'
-                            END,
+                            END tipo_doc,
                             e.numero_doc,
                             e.celular,
                             e.direccion,
@@ -377,7 +377,7 @@
                             ce.nombre_cate_evento,
                             CASE WHEN e.tipo_evento = 1 THEN 'GRATIS'
                                  ELSE 'PAGO'
-                            END,
+                            END tipo_evento,
                             e.costo,
                             e.fecha_creacion,
                             e.fecha_actualizacion,
