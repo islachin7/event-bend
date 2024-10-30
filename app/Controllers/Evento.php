@@ -142,7 +142,7 @@ class Evento extends ResourceController
         }
 
         $datetime1 = new DateTime($p_fecha_inicio);
-        
+        $datetime1 = $datetime1->format('Y-m-d H:i:s');
 
 
         //insert
