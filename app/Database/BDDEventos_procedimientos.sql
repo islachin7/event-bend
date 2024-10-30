@@ -407,7 +407,7 @@
                                               IN p_estado_evento int
                                               )
 
-                     INSERT INTO categoria_evento( id,
+                     INSERT INTO evento            ( id,
                                                    nombre_organizador  ,
                                                    apellido_organizador,
                                                    nombre_evento       ,
