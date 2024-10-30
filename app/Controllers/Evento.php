@@ -306,7 +306,12 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
-        
+        $fecha_1 = new DateTime($p_fecha_inicio);
+        $fecha_1 = $fecha_1->format('Y-m-d H:i:s');
+
+        $fecha_2 = new DateTime($p_fecha_fin);
+        $fecha_2 = $fecha_2->format('Y-m-d H:i:s');
+
         //UPDATE
         $query = $this->db->query('call insert_evento('.$p_id_evento.',"'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
