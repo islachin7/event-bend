@@ -23,20 +23,20 @@ class Evento extends ResourceController
 
     public function create(){
 
-        $p_nombre_organizador   =$this->request->getVar('p_nombre_organizador');
-        $p_apellido_organizador =$this->request->getVar('p_apellido_organizador');
-        $p_nombre_evento        =$this->request->getVar('p_nombre_evento');
+        $p_nombre_organizador   =$this->request->getVar('p_nombre_organizador'); //OBLIGA
+        $p_apellido_organizador =$this->request->getVar('p_apellido_organizador'); //OBLIGA
+        $p_nombre_evento        =$this->request->getVar('p_nombre_evento'); //OBLIGA
         $p_tipo_doc             =$this->request->getVar('p_tipo_doc');
         $p_numero_doc           =$this->request->getVar('p_numero_doc');
         $p_celular              =$this->request->getVar('p_celular');
-        $p_direccion            =$this->request->getVar('p_direccion');
-        $p_correo               =$this->request->getVar('p_correo');
-        $p_fecha_inicio         =$this->request->getVar('p_fecha_inicio');
-        $p_fecha_fin            =$this->request->getVar('p_fecha_fin ');
-        $p_categoria_evento     =$this->request->getVar('p_categoria_evento');
-        $p_tipo_evento          =$this->request->getVar('p_tipo_evento');
-        $p_costo                =$this->request->getVar('p_costo');
-        $p_estado_evento        =$this->request->getVar('p_estado_evento');
+        $p_direccion            =$this->request->getVar('p_direccion'); //OBLIGA
+        $p_correo               =$this->request->getVar('p_correo'); //OBLIGA
+        $p_fecha_inicio         =$this->request->getVar('p_fecha_inicio'); //OBLIGA
+        $p_fecha_fin            =$this->request->getVar('p_fecha_fin '); //OBLIGA
+        $p_categoria_evento     =$this->request->getVar('p_categoria_evento'); //OBLIGA
+        $p_tipo_evento          =$this->request->getVar('p_tipo_evento'); //OBLIGA
+        $p_costo                =$this->request->getVar('p_costo'); //OBLIGA
+        $p_estado_evento        =$this->request->getVar('p_estado_evento'); //OBLIGA
 
 
         //validaciones
@@ -308,21 +308,7 @@ class Evento extends ResourceController
 
         
         //UPDATE
-        $query = $this->db->query('call update_evento('.$p_id_evento.',
-                                                     "'.$p_nombre_organizador.'",
-                                                     "'.$p_apellido_organizador.'",
-                                                     "'.$p_nombre_evento.'",
-                                                      '.$p_tipo_doc.',
-                                                     "'.$p_numero_doc.'",
-                                                     "'.$p_celular.'",
-                                                      '.$p_direccion.',
-                                                     "'.$p_correo.'",
-                                                     "'.$p_fecha_inicio.'",
-                                                     "'.$p_fecha_fin.'",
-                                                      '.$p_categoria_evento.',
-                                                      '.$p_tipo_evento.',
-                                                      '.$p_costo.',
-                                                      '.$p_estado_evento.')');
+        $query = $this->db->query('call insert_evento('.$p_id_evento.',"'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
             'message'   => 'Se actualizó con éxito el evento.'
         ];
