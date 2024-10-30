@@ -183,7 +183,7 @@ class Evento extends ResourceController
         }
 
         $query = $this->db->query('call listar_evento("'.$p_id_evento.'")');
-        $data = $query->getResult();
+        $data = $query->getRowArray();
         return $this->respond($data, 200);
         
 	}
