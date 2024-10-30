@@ -313,7 +313,7 @@ class Evento extends ResourceController
         $fecha_2 = $fecha_2->format('Y-m-d H:i:s');
 
         //UPDATE
-        $query = $this->db->query('call insert_evento('.$p_id_evento.',"'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
+        $query = $this->db->query('call update_evento('.$p_id_evento.',"'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
             'message'   => 'Se actualizó con éxito el evento.'
         ];
