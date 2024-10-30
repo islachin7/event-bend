@@ -2,6 +2,7 @@
 
 use CodeIgniter\RESTful\ResourceController;
 use CodeIgniter\API\ResponseTrait;
+use \DateTime; 
 
 class Evento extends ResourceController
 {
