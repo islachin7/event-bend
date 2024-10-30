@@ -23,21 +23,6 @@ class Evento extends ResourceController
 
     public function create(){
 
-        $p_nombre_organizador   = null;
-        $p_apellido_organizador = null;
-        $p_nombre_evento        = null;
-        $p_tipo_doc             = null;
-        $p_numero_doc           = null;
-        $p_celular              = null;
-        $p_direccion            = null;
-        $p_correo               = null;
-        $p_fecha_inicio         = null;
-        $p_fecha_fin            = null;
-        $p_categoria_evento     = null;
-        $p_tipo_evento          = null;
-        $p_costo                = null;
-        $p_estado_evento        = null;
-
         $p_nombre_organizador   =$this->request->getVar('p_nombre_organizador');
         $p_apellido_organizador =$this->request->getVar('p_apellido_organizador');
         $p_nombre_evento        =$this->request->getVar('p_nombre_evento');

@@ -391,10 +391,10 @@
 
 -------------------------------------------------------------------------
 
-		CREATE PROCEDURE insert_evento( IN p_nombre_organizador varchar(200),
+		CREATE PROCEDURE insert_evento    ( IN p_nombre_organizador varchar(200),
                                               IN p_apellido_organizador varchar(200),
                                               IN p_nombre_evento varchar(500),
-                                              IN p_tipo_doc int, --1 DNI/2 RUC/3 C.EXTRANJERIA,
+                                              IN p_tipo_doc int,
                                               IN p_numero_doc varchar(20),
                                               IN p_celular varchar(20),
                                               IN p_direccion int,
@@ -402,9 +402,9 @@
                                               IN p_fecha_inicio datetime,
                                               IN p_fecha_fin datetime,
                                               IN p_categoria_evento int,
-                                              IN p_tipo_evento int, -- 1 Gratis / 2 Pago,
+                                              IN p_tipo_evento int,
                                               IN p_costo decimal(18,2),
-                                              IN p_estado_evento int -- 1 Pendiente / 2 Evento,
+                                              IN p_estado_evento int
                                               )
 
                      INSERT INTO categoria_evento( id,

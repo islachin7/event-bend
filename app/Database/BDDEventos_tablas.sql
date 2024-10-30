@@ -86,7 +86,7 @@ CREATE TABLE evento (
   nombre_organizador    varchar(200),
   apellido_organizador  varchar(200),
   nombre_evento         varchar(500),
-  tipo_doc              int, --1 DNI/2 RUC/3 C.EXTRANJERIA
+  tipo_doc              int, 
   numero_doc            varchar(20),
   celular               varchar(20),
   direccion             int,
@@ -94,13 +94,13 @@ CREATE TABLE evento (
   fecha_inicio          datetime,
   fecha_fin             datetime,
   categoria_evento      int,
-  tipo_evento           int, -- 1 Gratis / 2 Pago
+  tipo_evento           int, 
   costo                 decimal(18,2),
   fecha_creacion        datetime DEFAULT current_timestamp(),
   fecha_actualizacion   datetime DEFAULT current_timestamp(),
   fecha_inactivo        datetime,
-  ind_activo            int, -- 0 inactivo / 1 activo
-  estado_evento         int, -- 1 Pendiente (cotización) / 2 Evento Creado
+  ind_activo            int, 
+  estado_evento         int, 
   index(categoria_evento),
   index(direccion),
   foreign key (categoria_evento) references categoria_evento(id),
