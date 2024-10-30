@@ -23,45 +23,45 @@ class Evento extends ResourceController
 
     public function create(){
 
-        $nombre_organizador   =$this->request->getVar('nombre_organizador'); //OBLIGA
-        $apellido_organizador =$this->request->getVar('apellido_organizador'); //OBLIGA
-        $nombre_evento        =$this->request->getVar('nombre_evento'); //OBLIGA
-        $tipo_doc             =$this->request->getVar('tipo_doc');
-        $numero_doc           =$this->request->getVar('numero_doc');
-        $celular              =$this->request->getVar('celular');
-        $direccion            =$this->request->getVar('direccion'); //OBLIGA
-        $correo               =$this->request->getVar('correo'); //OBLIGA
-        $fecha_inicio         =$this->request->getVar('fecha_inicio'); //OBLIGA
-        $fecha_fin            =$this->request->getVar('fecha_fin '); //OBLIGA
-        $categoria_evento     =$this->request->getVar('categoria_evento'); //OBLIGA
-        $tipo_evento          =$this->request->getVar('tipo_evento'); //OBLIGA
-        $costo                =$this->request->getVar('costo'); //OBLIGA
-        $estado_evento        =$this->request->getVar('estado_evento'); //OBLIGA
+        $p_nombre_organizador   =$this->request->getVar('p_nombre_organizador'); //OBLIGA
+        $p_apellido_organizador =$this->request->getVar('p_apellido_organizador'); //OBLIGA
+        $p_nombre_evento        =$this->request->getVar('p_nombre_evento'); //OBLIGA
+        $p_tipo_doc             =$this->request->getVar('p_tipo_doc');
+        $p_numero_doc           =$this->request->getVar('p_numero_doc');
+        $p_celular              =$this->request->getVar('p_celular');
+        $p_direccion            =$this->request->getVar('p_direccion'); //OBLIGA
+        $p_correo               =$this->request->getVar('p_correo'); //OBLIGA
+        $p_fecha_inicio         =$this->request->getVar('p_fecha_inicio'); //OBLIGA
+        $p_fecha_fin            =$this->request->getVar('p_fecha_fin '); //OBLIGA
+        $p_categoria_evento     =$this->request->getVar('p_categoria_evento'); //OBLIGA
+        $p_tipo_evento          =$this->request->getVar('p_tipo_evento'); //OBLIGA
+        $p_costo                =$this->request->getVar('p_costo'); //OBLIGA
+        $p_estado_evento        =$this->request->getVar('p_estado_evento'); //OBLIGA
 
 
         //validaciones
-        if($nombre_organizador == "" || strlen($nombre_organizador) <= 0){
+        if($p_nombre_organizador == "" || strlen($p_nombre_organizador) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del organizador esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($apellido_organizador == "" || strlen($apellido_organizador) <= 0){
+        if($p_apellido_organizador == "" || strlen($p_apellido_organizador) <= 0){
             $response = [
                 'error'     => 'Error, el apellido del organizador esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($nombre_evento == "" || strlen($nombre_evento) <= 0){
+        if($p_nombre_evento == "" || strlen($p_nombre_evento) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($direccion == "" || strlen($direccion) <= 0){
+        if($p_direccion == "" || strlen($p_direccion) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono la dirección, seleccione el campo obligatorio.'
             ];
@@ -69,7 +69,7 @@ class Evento extends ResourceController
         }
 
         //busca direccion
-        $busca = $this->db->query('call listar_direccion('.$direccion.')');
+        $busca = $this->db->query('call listar_direccion('.$p_direccion.')');
         $direccion = $busca->getRowArray();
 
         //validacion de direccion
@@ -80,28 +80,28 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
-        if($correo == "" || strlen($correo) <= 0){
+        if($p_correo == "" || strlen($p_correo) <= 0){
             $response = [
                 'error'     => 'Error, el correo esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($fecha_inicio == "" || strlen($fecha_inicio) <= 0){
+        if($p_fecha_inicio == "" || strlen($p_fecha_inicio) <= 0){
             $response = [
                 'error'     => 'Error, la fecha de inicio del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($fecha_fin == "" || strlen($fecha_fin) <= 0){
+        if($p_fecha_fin == "" || strlen($p_fecha_fin) <= 0){
             $response = [
                 'error'     => 'Error, la fecha de finalización del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($categoria_evento == "" || strlen($categoria_evento) <= 0){
+        if($p_categoria_evento == "" || strlen($p_categoria_evento) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono la categoria del evento, seleccione el campo obligatorio.'
             ];
@@ -109,7 +109,7 @@ class Evento extends ResourceController
         }
 
         //busca categoria_evento
-        $busca = $this->db->query('call listar_categoria_evento_by_id('.$categoria_evento.')');
+        $busca = $this->db->query('call listar_categoria_evento_by_id('.$p_categoria_evento.')');
         $categoria_evento = $busca->getRowArray();
 
         //validacion de la categoria del evento
@@ -120,36 +120,36 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
-        if($tipo_evento == "" || strlen($tipo_evento) <= 0){
+        if($p_tipo_evento == "" || strlen($p_tipo_evento) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono el tipo de evento, seleccione el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($costo == "" || strlen($costo) <= 0){
+        if($p_costo == "" || strlen($p_costo) <= 0){
             $response = [
                 'error'     => 'Error, el costo esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($estado_evento == "" || strlen($estado_evento) <= 0){
+        if($p_estado_evento == "" || strlen($p_estado_evento) <= 0){
             $response = [
                 'error'     => 'Error, el estado esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        $fecha_1 = new DateTime($fecha_inicio);
+        $fecha_1 = new DateTime($p_fecha_inicio);
         $fecha_1 = $fecha_1->format('Y-m-d H:i:s');
 
-        $fecha_2 = new DateTime($fecha_fin);
+        $fecha_2 = new DateTime($p_fecha_fin);
         $fecha_2 = $fecha_2->format('Y-m-d H:i:s');
 
 
         //insert
-        $query = $this->db->query('call insert_evento("'.$nombre_organizador.'","'.$apellido_organizador.'","'.$nombre_evento.'","'.$tipo_doc.'","'.$numero_doc.'","'.$celular.'",'.$direccion.',"'.$correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$categoria_evento.','.$tipo_evento.','.$costo.','.$estado_evento.')');
+        $query = $this->db->query('call insert_evento("'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
             'message'   => 'Se generó con éxito el evento.'
         ];
@@ -160,10 +160,10 @@ class Evento extends ResourceController
     //--------------------------------------------------------------------
 
     public function read(){
-        $id_evento =$this->request->getVar('id_evento');
+        $p_id_evento =$this->request->getVar('p_id_evento');
 
         //validacion de id_evento
-        if($id_evento == "" || strlen($id_evento) <= 0){
+        if($p_id_evento == "" || strlen($p_id_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador del evento.'
             ];
@@ -171,7 +171,7 @@ class Evento extends ResourceController
         }
 
         //busca evento
-        $busca = $this->db->query('call listar_evento('.$id_evento.')');
+        $busca = $this->db->query('call listar_evento('.$p_id_evento.')');
         $evento = $busca->getRowArray();
 
         //validacion de evento
@@ -182,7 +182,7 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
-        $query = $this->db->query('call listar_evento("'.$id_evento.'")');
+        $query = $this->db->query('call listar_evento("'.$p_id_evento.'")');
         $data = $query->getRowArray();
         return $this->respond($data, 200);
         
@@ -192,25 +192,25 @@ class Evento extends ResourceController
 
     public function update_evento(){
 
-        $id_evento            =$this->request->getVar('id_evento');
-        $nombre_organizador   =$this->request->getVar('nombre_organizador');
-        $apellido_organizador =$this->request->getVar('apellido_organizador');
-        $nombre_evento        =$this->request->getVar('nombre_evento');
-        $tipo_doc             =$this->request->getVar('tipo_doc');
-        $numero_doc           =$this->request->getVar('numero_doc');
-        $celular              =$this->request->getVar('celular');
-        $direccion            =$this->request->getVar('direccion');
-        $correo               =$this->request->getVar('correo');
-        $fecha_inicio         =$this->request->getVar('fecha_inicio');
-        $fecha_fin            =$this->request->getVar('fecha_fin ');
-        $categoria_evento     =$this->request->getVar('categoria_evento');
-        $tipo_evento          =$this->request->getVar('tipo_evento');
-        $costo                =$this->request->getVar('costo');
-        $estado_evento        =$this->request->getVar('estado_evento');
+        $p_id_evento            =$this->request->getVar('p_id_evento');
+        $p_nombre_organizador   =$this->request->getVar('p_nombre_organizador');
+        $p_apellido_organizador =$this->request->getVar('p_apellido_organizador');
+        $p_nombre_evento        =$this->request->getVar('p_nombre_evento');
+        $p_tipo_doc             =$this->request->getVar('p_tipo_doc');
+        $p_numero_doc           =$this->request->getVar('p_numero_doc');
+        $p_celular              =$this->request->getVar('p_celular');
+        $p_direccion            =$this->request->getVar('p_direccion');
+        $p_correo               =$this->request->getVar('p_correo');
+        $p_fecha_inicio         =$this->request->getVar('p_fecha_inicio');
+        $p_fecha_fin            =$this->request->getVar('p_fecha_fin ');
+        $p_categoria_evento     =$this->request->getVar('p_categoria_evento');
+        $p_tipo_evento          =$this->request->getVar('p_tipo_evento');
+        $p_costo                =$this->request->getVar('p_costo');
+        $p_estado_evento        =$this->request->getVar('p_estado_evento');
 
         //validaciones
         //validacion de id_evento
-        if($id_evento == "" || strlen($id_evento) <= 0){
+        if($p_id_evento == "" || strlen($p_id_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador del evento.'
             ];
@@ -218,7 +218,7 @@ class Evento extends ResourceController
         }
 
         //busca evento
-        $busca = $this->db->query('call listar_evento('.$id_evento.')');
+        $busca = $this->db->query('call listar_evento('.$p_id_evento.')');
         $evento = $busca->getRowArray();
 
         //validacion de evento
@@ -229,91 +229,91 @@ class Evento extends ResourceController
             return $this->respond($response,400);
         }
 
-        if($nombre_organizador == "" || strlen($nombre_organizador) <= 0){
+        if($p_nombre_organizador == "" || strlen($p_nombre_organizador) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del organizador esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($apellido_organizador == "" || strlen($apellido_organizador) <= 0){
+        if($p_apellido_organizador == "" || strlen($p_apellido_organizador) <= 0){
             $response = [
                 'error'     => 'Error, el apellido del organizador esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($nombre_evento == "" || strlen($nombre_evento) <= 0){
+        if($p_nombre_evento == "" || strlen($p_nombre_evento) <= 0){
             $response = [
                 'error'     => 'Error, el nombre del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($direccion == "" || strlen($direccion) <= 0){
+        if($p_direccion == "" || strlen($p_direccion) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono la dirección, seleccione el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($correo == "" || strlen($correo) <= 0){
+        if($p_correo == "" || strlen($p_correo) <= 0){
             $response = [
                 'error'     => 'Error, el correo esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($fecha_inicio == "" || strlen($fecha_inicio) <= 0){
+        if($p_fecha_inicio == "" || strlen($p_fecha_inicio) <= 0){
             $response = [
                 'error'     => 'Error, la fecha de inicio del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($fecha_fin == "" || strlen($fecha_fin) <= 0){
+        if($p_fecha_fin == "" || strlen($p_fecha_fin) <= 0){
             $response = [
                 'error'     => 'Error, la fecha de finalización del evento esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($categoria_evento == "" || strlen($categoria_evento) <= 0){
+        if($p_categoria_evento == "" || strlen($p_categoria_evento) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono la categoria del evento, seleccione el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($tipo_evento == "" || strlen($tipo_evento) <= 0){
+        if($p_tipo_evento == "" || strlen($p_tipo_evento) <= 0){
             $response = [
                 'error'     => 'Error, no selecciono el tipo de evento, seleccione el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($costo == "" || strlen($costo) <= 0){
+        if($p_costo == "" || strlen($p_costo) <= 0){
             $response = [
                 'error'     => 'Error, el costo esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        if($estado_evento == "" || strlen($estado_evento) <= 0){
+        if($p_estado_evento == "" || strlen($p_estado_evento) <= 0){
             $response = [
                 'error'     => 'Error, el estado esta vacio, llene el campo obligatorio.'
             ];
             return $this->respond($response,400);
         }
 
-        $fecha_1 = new DateTime($fecha_inicio);
+        $fecha_1 = new DateTime($p_fecha_inicio);
         $fecha_1 = $fecha_1->format('Y-m-d H:i:s');
 
-        $fecha_2 = new DateTime($fecha_fin);
+        $fecha_2 = new DateTime($p_fecha_fin);
         $fecha_2 = $fecha_2->format('Y-m-d H:i:s');
 
         //UPDATE
-        $query = $this->db->query('call update_evento('.$id_evento.',"'.$nombre_organizador.'","'.$apellido_organizador.'","'.$nombre_evento.'","'.$tipo_doc.'","'.$numero_doc.'","'.$celular.'",'.$direccion.',"'.$correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$categoria_evento.','.$tipo_evento.','.$costo.','.$estado_evento.')');
+        $query = $this->db->query('call update_evento('.$p_id_evento.',"'.$p_nombre_organizador.'","'.$p_apellido_organizador.'","'.$p_nombre_evento.'","'.$p_tipo_doc.'","'.$p_numero_doc.'","'.$p_celular.'",'.$p_direccion.',"'.$p_correo.'","'.$fecha_1.'","'.$fecha_2.'",'.$p_categoria_evento.','.$p_tipo_evento.','.$p_costo.','.$p_estado_evento.')');
         $response = [
             'message'   => 'Se actualizó con éxito el evento.'
         ];
@@ -324,10 +324,10 @@ class Evento extends ResourceController
     //--------------------------------------------------------------------
 
     public function activate(){
-        $id_evento =$this->request->getVar('id_evento');
+        $p_id_evento =$this->request->getVar('p_id_evento');
 
-        //validacion de id_evento
-        if($id_evento == "" || strlen($id_evento) <= 0){
+        //validacion de p_id_evento
+        if($p_id_evento == "" || strlen($p_id_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador del evento.'
             ];
@@ -335,7 +335,7 @@ class Evento extends ResourceController
         }
 
         //busca evento
-        $busca = $this->db->query('call listar_evento('.$id_evento.')');
+        $busca = $this->db->query('call listar_evento('.$p_id_evento.')');
         $evento = $busca->getRowArray();
 
         //validacion de evento
@@ -347,7 +347,7 @@ class Evento extends ResourceController
         }
 
         //activar
-        $query = $this->db->query('call update_evento_acti('.$id_evento.')');
+        $query = $this->db->query('call update_evento_acti('.$p_id_evento.')');
         $response = [
             'message'   => 'Se activó con éxito el evento.'
         ];
@@ -357,10 +357,10 @@ class Evento extends ResourceController
     //--------------------------------------------------------------------
 
     public function delete_evento(){
-        $id_evento =$this->request->getVar('id_evento');
+        $p_id_evento =$this->request->getVar('p_id_evento');
 
-        //validacion de id_evento
-        if($id_evento == "" || strlen($id_evento) <= 0){
+        //validacion de p_id_evento
+        if($p_id_evento == "" || strlen($p_id_evento) <= 0){
             $response = [
             'error'     => 'Error, no existe identificador de evento.'
             ];
@@ -368,7 +368,7 @@ class Evento extends ResourceController
         }
 
         //busca evento
-        $busca = $this->db->query('call listar_evento('.$id_evento.')');
+        $busca = $this->db->query('call listar_evento('.$p_id_evento.')');
         $evento = $busca->getRowArray();
 
         //validacion de evento
@@ -380,7 +380,7 @@ class Evento extends ResourceController
         }
 
         //delete
-        $query = $this->db->query('call delete_evento('.$id_evento.')');
+        $query = $this->db->query('call delete_evento('.$p_id_evento.')');
         $response = [
             'message'   => 'Se eliminó con éxito el evento.'
         ];
