@@ -242,7 +242,7 @@
 		CREATE PROCEDURE listar_categorias_eventos()
                      SELECT ce.id,
                             ce.nombre_cate_evento,
-                            ce.categoria,
+                            ce.categoria id_categoria,
                             c.nombre_categoria,
                             ce.fecha_inactivo,
                             ce.ind_activo
@@ -254,7 +254,7 @@
 		CREATE PROCEDURE listar_categoria_evento_by_categoria(IN p_categoria INT)
                      SELECT ce.id,
                             ce.nombre_cate_evento,
-                            ce.categoria,
+                            ce.categoria id_categoria,
                             c.nombre_categoria,
                             ce.fecha_inactivo,
                             ce.ind_activo
@@ -267,7 +267,7 @@
 		CREATE PROCEDURE listar_categoria_evento_by_id(IN p_id INT)
                      SELECT ce.id,
                             ce.nombre_cate_evento,
-                            ce.categoria,
+                            ce.categoria id_categoria,
                             c.nombre_categoria,
                             ce.fecha_inactivo,
                             ce.ind_activo
