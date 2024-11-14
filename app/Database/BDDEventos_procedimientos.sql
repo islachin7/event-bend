@@ -377,9 +377,7 @@
                             e.fecha_fin,
                             e.categoria_evento,
                             ce.nombre_cate_evento,
-                            CASE WHEN e.tipo_evento = 1 THEN 'GRATIS'
-                                 ELSE 'PAGO'
-                            END tipo_evento,
+                            e.tipo_evento,
                             e.costo,
                             e.fecha_creacion,
                             e.fecha_actualizacion,
